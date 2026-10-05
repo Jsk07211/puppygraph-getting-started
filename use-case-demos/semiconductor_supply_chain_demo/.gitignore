@@ -1,0 +1,19 @@
+# Local scratch work, never committed
+dev/
+
+# Downloads cached by the scripts
+.cache/
+
+# Generated Parquet files (rebuilt from csv_data/ with CsvToParquet.py)
+parquet_data/
+
+# Large-scale synthetic output (generated on demand)
+csv_data_large/
+
+# Docker volume mounts
+warehouse/
+notebooks/
+
+# Python
+__pycache__/
+.venv/

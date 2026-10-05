@@ -1,0 +1,10 @@
+event_id,country,relation
+V001,TWN,location
+V002,JPN,location
+V003,KOR,location
+V004,THA,location
+V005,TWN,location
+V006,CHN,target
+V006,USA,imposing
+V007,CHN,target
+V007,NLD,imposing

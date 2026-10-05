@@ -1,0 +1,410 @@
+facility_id,company_id,name,facility_type,city,country,latitude,longitude,status,hvm_start_year,domain,process_node,process_node_nm,wafer_size_mm,capacity,capacity_unit,time_to_recover_weeks
+F00001,C00001,Nyroux Chitose Plant 1,materials_plant,Chitose,JPN,42.8142,141.6659,operating,2017,wafers,,,,19954,tonnes_per_year,10
+F00002,C00002,Nyrenium Kumamoto Plant 1,materials_plant,Kumamoto,JPN,32.7798,130.7045,operating,2014,wafers,,,,5434,tonnes_per_year,7
+F00003,C00002,Nyrenium Chitose Plant 2,materials_plant,Chitose,JPN,42.8112,141.6981,operating,2022,wafers,,,,14567,tonnes_per_year,13
+F00004,C00003,Noriant Kitakami Plant 1,materials_plant,Kitakami,JPN,39.3232,141.0952,operating,1996,wafers,,,,19923,tonnes_per_year,7
+F00005,C00003,Noriant Kumamoto Plant 2,materials_plant,Kumamoto,JPN,32.8167,130.7382,operating,1999,wafers,,,,7066,tonnes_per_year,6
+F00006,C00004,Faloark Kitakami Plant 1,materials_plant,Kitakami,JPN,39.2449,141.0723,operating,1996,wafers,,,,15763,tonnes_per_year,19
+F00007,C00005,Sylanark Yokkaichi Plant 1,materials_plant,Yokkaichi,JPN,35.0257,136.5771,operating,1997,wafers,,,,5018,tonnes_per_year,7
+F00008,C00006,Norarent Penang Plant 1,materials_plant,Penang,MYS,5.4225,100.3884,operating,2000,wafers,,,,9821,tonnes_per_year,16
+F00009,C00007,Davenys Kumamoto Plant 1,materials_plant,Kumamoto,JPN,32.7838,130.6505,operating,2013,wafers,,,,16395,tonnes_per_year,13
+F00010,C00008,Coreux Penang Plant 1,materials_plant,Penang,MYS,5.3597,100.3572,ramping,2024,wafers,,,,6171,tonnes_per_year,8
+F00011,C00008,Coreux Singapore Plant 2,materials_plant,Singapore,SGP,1.3564,103.844,operating,2017,wafers,,,,11788,tonnes_per_year,7
+F00012,C00009,Halirios Kumamoto Plant 1,materials_plant,Kumamoto,JPN,32.8314,130.7607,under_construction,2027,wafers,,,,17040,tonnes_per_year,12
+F00013,C00009,Halirios Singapore Plant 2,materials_plant,Singapore,SGP,1.2975,103.7731,operating,2013,wafers,,,,19426,tonnes_per_year,17
+F00014,C00010,Fenirell Wuxi Plant 1,materials_plant,Wuxi,CHN,31.5197,120.2926,operating,2018,polysilicon,,,,16798,tonnes_per_year,10
+F00015,C00010,Fenirell Shanghai Plant 2,materials_plant,Shanghai,CHN,31.2535,121.4267,ramping,2025,polysilicon,,,,4299,tonnes_per_year,10
+F00016,C00011,Joriseon Beijing Plant 1,materials_plant,Beijing,CHN,39.8535,116.4022,operating,2007,polysilicon,,,,3084,tonnes_per_year,12
+F00017,C00011,Joriseon Xi'an Plant 2,materials_plant,Xi'an,CHN,34.3226,108.9186,ramping,2025,polysilicon,,,,15841,tonnes_per_year,10
+F00018,C00012,Pyraent Phoenix Plant 1,materials_plant,Phoenix,USA,33.4315,-112.0338,ramping,2024,polysilicon,,,,10481,tonnes_per_year,14
+F00019,C00013,Falelys Boise Plant 1,materials_plant,Boise,USA,43.5645,-116.1635,operating,2018,polysilicon,,,,4301,tonnes_per_year,6
+F00020,C00014,Brynisys Kumamoto Plant 1,materials_plant,Kumamoto,JPN,32.7486,130.7072,operating,1996,photoresist,,,,19581,tonnes_per_year,17
+F00021,C00015,Alvuix Xi'an Plant 1,materials_plant,Xi'an,CHN,34.3952,108.9514,operating,2015,photoresist,,,,11324,tonnes_per_year,18
+F00022,C00016,Falirara Hiroshima Plant 1,materials_plant,Hiroshima,JPN,34.3689,132.4126,operating,2008,photoresist,,,,2499,tonnes_per_year,7
+F00023,C00017,Selenion Pyeongtaek Plant 1,materials_plant,Pyeongtaek,KOR,37.0054,127.1005,operating,1998,photoresist,,,,12593,tonnes_per_year,16
+F00024,C00018,Rynirux Hwaseong Plant 1,materials_plant,Hwaseong,KOR,37.1984,126.886,operating,2022,photoresist,,,,3079,tonnes_per_year,6
+F00025,C00018,Rynirux Hwaseong Plant 2,materials_plant,Hwaseong,KOR,37.1707,126.8899,operating,2004,photoresist,,,,1706,tonnes_per_year,9
+F00026,C00019,Breveara Boise Plant 1,materials_plant,Boise,USA,43.672,-116.1476,operating,1997,photoresist,,,,6192,tonnes_per_year,13
+F00027,C00020,Caelirara Columbus Plant 1,materials_plant,Columbus,USA,39.9103,-83.0227,operating,1997,photoresist,,,,14300,tonnes_per_year,8
+F00028,C00021,Quinorium Beijing Plant 1,materials_plant,Beijing,CHN,39.8888,116.4419,operating,2019,specialty_gases,,,,18911,tonnes_per_year,13
+F00029,C00021,Quinorium Singapore Plant 2,materials_plant,Singapore,SGP,1.3191,103.804,operating,2002,specialty_gases,,,,17721,tonnes_per_year,18
+F00030,C00022,Caelelet Beijing Plant 1,materials_plant,Beijing,CHN,39.9386,116.3589,operating,2004,specialty_gases,,,,13602,tonnes_per_year,18
+F00031,C00023,Brynorond Jena Plant 1,materials_plant,Jena,DEU,50.9171,11.5339,operating,2017,specialty_gases,,,,6914,tonnes_per_year,9
+F00032,C00023,Brynorond Munich Plant 2,materials_plant,Munich,DEU,48.1473,11.5777,operating,2000,specialty_gases,,,,3977,tonnes_per_year,11
+F00033,C00024,Rynent Regensburg Plant 1,materials_plant,Regensburg,DEU,48.9878,12.0796,operating,2004,specialty_gases,,,,7757,tonnes_per_year,12
+F00034,C00025,Kavorium Singapore Plant 1,materials_plant,Singapore,SGP,1.3926,103.7796,operating,2020,specialty_gases,,,,697,tonnes_per_year,15
+F00035,C00026,Irarium Yokkaichi Plant 1,materials_plant,Yokkaichi,JPN,34.9444,136.664,under_construction,2027,specialty_gases,,,,4452,tonnes_per_year,14
+F00036,C00026,Irarium Chitose Plant 2,materials_plant,Chitose,JPN,42.8733,141.6427,operating,2020,specialty_gases,,,,5192,tonnes_per_year,20
+F00037,C00027,Wynaret Hsinchu Plant 1,materials_plant,Hsinchu,TWN,24.8512,120.919,operating,1997,specialty_gases,,,,17104,tonnes_per_year,7
+F00038,C00027,Wynaret Taichung Plant 2,materials_plant,Taichung,TWN,24.1989,120.7154,ramping,2024,specialty_gases,,,,5408,tonnes_per_year,19
+F00039,C00028,Fenirond Nanjing Plant 1,materials_plant,Nanjing,CHN,32.0161,118.8013,operating,2014,specialty_gases,,,,5025,tonnes_per_year,12
+F00040,C00028,Fenirond Kaohsiung Plant 2,materials_plant,Kaohsiung,TWN,22.5769,120.342,ramping,2024,specialty_gases,,,,2639,tonnes_per_year,12
+F00041,C00029,Thalell Beijing Plant 1,materials_plant,Beijing,CHN,39.8504,116.4454,under_construction,2027,wet_chemicals,,,,4000,tonnes_per_year,14
+F00042,C00030,Davuark Xi'an Plant 1,materials_plant,Xi'an,CHN,34.2891,108.9474,operating,2007,wet_chemicals,,,,12097,tonnes_per_year,14
+F00043,C00030,Davuark Nanjing Plant 2,materials_plant,Nanjing,CHN,32.0049,118.7837,ramping,2024,wet_chemicals,,,,13742,tonnes_per_year,16
+F00044,C00031,Iriell Tokyo Plant 1,materials_plant,Tokyo,JPN,35.703,139.6971,operating,2018,wet_chemicals,,,,19822,tonnes_per_year,15
+F00045,C00031,Iriell Chitose Plant 2,materials_plant,Chitose,JPN,42.8683,141.5925,operating,2002,wet_chemicals,,,,7300,tonnes_per_year,6
+F00046,C00032,Velisix Yokkaichi Plant 1,materials_plant,Yokkaichi,JPN,35.0052,136.6344,operating,2009,wet_chemicals,,,,16408,tonnes_per_year,12
+F00047,C00033,Thalanios Taichung Plant 1,materials_plant,Taichung,TWN,24.1391,120.6763,operating,2018,wet_chemicals,,,,3874,tonnes_per_year,19
+F00048,C00033,Thalanios Tainan Plant 2,materials_plant,Tainan,TWN,23.0146,120.2506,operating,2007,wet_chemicals,,,,15120,tonnes_per_year,9
+F00049,C00034,Obrirex Kaohsiung Plant 1,materials_plant,Kaohsiung,TWN,22.6298,120.3106,operating,2001,wet_chemicals,,,,12396,tonnes_per_year,11
+F00050,C00034,Obrirex Hsinchu Plant 2,materials_plant,Hsinchu,TWN,24.826,121.001,operating,2007,wet_chemicals,,,,19415,tonnes_per_year,14
+F00051,C00035,Kavaora Phoenix Plant 1,materials_plant,Phoenix,USA,33.4762,-112.0619,operating,2007,wet_chemicals,,,,9550,tonnes_per_year,10
+F00052,C00036,Wynareon Dallas Plant 1,materials_plant,Dallas,USA,32.8386,-96.7434,under_construction,2027,wet_chemicals,,,,17051,tonnes_per_year,8
+F00053,C00036,Wynareon Columbus Plant 2,materials_plant,Columbus,USA,39.9625,-82.9558,operating,2017,wet_chemicals,,,,10366,tonnes_per_year,20
+F00054,C00037,Gryanane Xi'an Plant 1,materials_plant,Xi'an,CHN,34.3805,108.9381,operating,1999,substrates,,,,9733,tonnes_per_year,6
+F00055,C00038,Mevorant Yokkaichi Plant 1,materials_plant,Yokkaichi,JPN,34.9374,136.6311,operating,2018,substrates,,,,17832,tonnes_per_year,16
+F00056,C00039,Velenet Hiroshima Plant 1,materials_plant,Hiroshima,JPN,34.3696,132.4565,operating,2001,substrates,,,,2731,tonnes_per_year,9
+F00057,C00039,Velenet Tokyo Plant 2,materials_plant,Tokyo,JPN,35.6864,139.6713,operating,2003,substrates,,,,18816,tonnes_per_year,13
+F00058,C00040,Ithaeth Yongin Plant 1,materials_plant,Yongin,KOR,37.2417,127.2053,operating,1997,substrates,,,,6219,tonnes_per_year,20
+F00059,C00040,Ithaeth Cheongju Plant 2,materials_plant,Cheongju,KOR,36.6379,127.5305,operating,2019,substrates,,,,3238,tonnes_per_year,9
+F00060,C00041,Loraux Icheon Plant 1,materials_plant,Icheon,KOR,37.2564,127.4784,operating,2004,substrates,,,,1937,tonnes_per_year,6
+F00061,C00042,Quinell Cheongju Plant 1,materials_plant,Cheongju,KOR,36.6667,127.5398,ramping,2025,substrates,,,,9942,tonnes_per_year,17
+F00062,C00042,Quinell Cheongju Plant 2,materials_plant,Cheongju,KOR,36.6765,127.4694,ramping,2024,substrates,,,,9773,tonnes_per_year,20
+F00063,C00043,Draell Taoyuan Plant 1,materials_plant,Taoyuan,TWN,25.0442,121.2926,operating,2002,substrates,,,,19742,tonnes_per_year,9
+F00064,C00043,Draell Kaohsiung Plant 2,materials_plant,Kaohsiung,TWN,22.5872,120.2696,operating,1995,substrates,,,,13293,tonnes_per_year,11
+F00065,C00044,Pelelium Hsinchu Plant 1,materials_plant,Hsinchu,TWN,24.8123,120.9933,operating,2020,substrates,,,,6751,tonnes_per_year,10
+F00066,C00045,Ithorark Yokkaichi Plant 1,materials_plant,Yokkaichi,JPN,34.9641,136.6603,operating,2003,cmp_slurry,,,,17761,tonnes_per_year,9
+F00067,C00045,Ithorark Chitose Plant 2,materials_plant,Chitose,JPN,42.7828,141.6028,under_construction,2027,cmp_slurry,,,,9713,tonnes_per_year,14
+F00068,C00046,Thalirys Kumamoto Plant 1,materials_plant,Kumamoto,JPN,32.766,130.7465,operating,2013,cmp_slurry,,,,2717,tonnes_per_year,18
+F00069,C00047,Wynoryn Penang Plant 1,materials_plant,Penang,MYS,5.4407,100.312,operating,2002,cmp_slurry,,,,15374,tonnes_per_year,10
+F00070,C00047,Wynoryn Yongin Plant 2,materials_plant,Yongin,KOR,37.2044,127.1581,operating,2003,cmp_slurry,,,,8632,tonnes_per_year,16
+F00071,C00048,Ithenane Penang Plant 1,materials_plant,Penang,MYS,5.459,100.3768,operating,2001,cmp_slurry,,,,8686,tonnes_per_year,11
+F00072,C00048,Ithenane Beijing Plant 2,materials_plant,Beijing,CHN,39.8856,116.4091,operating,2019,cmp_slurry,,,,1220,tonnes_per_year,11
+F00073,C00049,Elanark Columbus Plant 1,materials_plant,Columbus,USA,39.9386,-82.9914,operating,2020,cmp_slurry,,,,526,tonnes_per_year,8
+F00074,C00049,Elanark Santa Clara Plant 2,materials_plant,Santa Clara,USA,37.3121,-122.0087,operating,2009,cmp_slurry,,,,12495,tonnes_per_year,11
+F00075,C00050,Syluix Singapore Plant 1,materials_plant,Singapore,SGP,1.362,103.7711,operating,2001,cmp_slurry,,,,6027,tonnes_per_year,10
+F00076,C00051,Yarenent Singapore Plant 1,equipment_plant,Singapore,SGP,1.3416,103.866,operating,1996,lithography,,,,837,tools_per_year,19
+F00077,C00051,Yarenent Pyeongtaek Plant 2,equipment_plant,Pyeongtaek,KOR,36.9698,127.1304,operating,2020,lithography,,,,261,tools_per_year,22
+F00078,C00052,Quinoane Tokyo Plant 1,equipment_plant,Tokyo,JPN,35.7223,139.7299,operating,2006,lithography,,,,727,tools_per_year,18
+F00079,C00052,Quinoane Kitakami Plant 2,equipment_plant,Kitakami,JPN,39.3321,141.1018,ramping,2025,lithography,,,,1157,tools_per_year,20
+F00080,C00053,Wynanux Veldhoven Plant 1,equipment_plant,Veldhoven,NLD,51.4724,5.4488,operating,2016,lithography,,,,242,tools_per_year,22
+F00081,C00054,Brynuant Eindhoven Plant 1,equipment_plant,Eindhoven,NLD,51.4755,5.4629,operating,2016,lithography,,,,1035,tools_per_year,23
+F00082,C00054,Brynuant Singapore Plant 2,equipment_plant,Singapore,SGP,1.376,103.79,ramping,2025,lithography,,,,280,tools_per_year,24
+F00083,C00055,Eskisent Nanjing Plant 1,equipment_plant,Nanjing,CHN,32.0902,118.7958,operating,2008,etch,,,,370,tools_per_year,10
+F00084,C00056,Wenaex Pyeongtaek Plant 1,equipment_plant,Pyeongtaek,KOR,36.9692,127.0606,operating,2023,etch,,,,959,tools_per_year,24
+F00085,C00056,Wenaex Wuxi Plant 2,equipment_plant,Wuxi,CHN,31.5094,120.3257,under_construction,2026,etch,,,,811,tools_per_year,23
+F00086,C00057,Davenora Chitose Plant 1,equipment_plant,Chitose,JPN,42.8445,141.5994,operating,1998,etch,,,,615,tools_per_year,24
+F00087,C00058,Mevoex Tokyo Plant 1,equipment_plant,Tokyo,JPN,35.683,139.7413,under_construction,2027,etch,,,,764,tools_per_year,21
+F00088,C00059,Thaleark Icheon Plant 1,equipment_plant,Icheon,KOR,37.2128,127.3984,operating,1998,etch,,,,615,tools_per_year,23
+F00089,C00060,Thalireth Hwaseong Plant 1,equipment_plant,Hwaseong,KOR,37.1419,126.7948,operating,2009,etch,,,,108,tools_per_year,12
+F00090,C00060,Thalireth Cheongju Plant 2,equipment_plant,Cheongju,KOR,36.6923,127.5258,operating,2013,etch,,,,699,tools_per_year,13
+F00091,C00061,Yarorion Boise Plant 1,equipment_plant,Boise,USA,43.6113,-116.2264,operating,2006,etch,,,,934,tools_per_year,17
+F00092,C00062,Brevanys Malta Plant 1,equipment_plant,Malta,USA,43.0068,-73.7846,operating,1995,etch,,,,1126,tools_per_year,20
+F00093,C00062,Brevanys Malta Plant 2,equipment_plant,Malta,USA,42.9945,-73.8004,operating,2003,etch,,,,870,tools_per_year,21
+F00094,C00063,Nyroane Phoenix Plant 1,equipment_plant,Phoenix,USA,33.424,-112.0481,operating,2009,etch,,,,98,tools_per_year,26
+F00095,C00063,Nyroane Boise Plant 2,equipment_plant,Boise,USA,43.6447,-116.2316,operating,2016,etch,,,,369,tools_per_year,25
+F00096,C00064,Araeth Shenzhen Plant 1,equipment_plant,Shenzhen,CHN,22.5064,114.0965,operating,2012,deposition,,,,143,tools_per_year,10
+F00097,C00065,Mevoell Singapore Plant 1,equipment_plant,Singapore,SGP,1.3711,103.8012,under_construction,2026,deposition,,,,55,tools_per_year,14
+F00098,C00066,Fenelium Regensburg Plant 1,equipment_plant,Regensburg,DEU,48.9945,12.0644,operating,2018,deposition,,,,788,tools_per_year,17
+F00099,C00067,Rynorond Dresden Plant 1,equipment_plant,Dresden,DEU,50.9924,13.7302,operating,2010,deposition,,,,1061,tools_per_year,17
+F00100,C00068,Faleant Singapore Plant 1,equipment_plant,Singapore,SGP,1.4084,103.8619,under_construction,2026,deposition,,,,213,tools_per_year,24
+F00101,C00069,Yaryn Chitose Plant 1,equipment_plant,Chitose,JPN,42.871,141.6644,operating,2010,deposition,,,,203,tools_per_year,19
+F00102,C00069,Yaryn Penang Plant 2,equipment_plant,Penang,MYS,5.4472,100.3546,operating,1998,deposition,,,,161,tools_per_year,23
+F00103,C00070,Wynaryn Yongin Plant 1,equipment_plant,Yongin,KOR,37.2784,127.1814,operating,2018,deposition,,,,684,tools_per_year,16
+F00104,C00071,Uliara Icheon Plant 1,equipment_plant,Icheon,KOR,37.2754,127.4593,operating,2009,deposition,,,,251,tools_per_year,15
+F00105,C00072,Selisent Dallas Plant 1,equipment_plant,Dallas,USA,32.7872,-96.7956,ramping,2024,deposition,,,,800,tools_per_year,19
+F00106,C00073,Draelios Malta Plant 1,equipment_plant,Malta,USA,42.9243,-73.7903,operating,2008,deposition,,,,515,tools_per_year,18
+F00107,C00073,Draelios Singapore Plant 2,equipment_plant,Singapore,SGP,1.2988,103.7823,operating,2004,deposition,,,,295,tools_per_year,24
+F00108,C00074,Sylient Singapore Plant 1,equipment_plant,Singapore,SGP,1.3951,103.7954,operating,2001,metrology,,,,1136,tools_per_year,22
+F00109,C00075,Nyroet Singapore Plant 1,equipment_plant,Singapore,SGP,1.3612,103.8787,under_construction,2026,metrology,,,,440,tools_per_year,15
+F00110,C00075,Nyroet Penang Plant 2,equipment_plant,Penang,MYS,5.3829,100.3114,operating,2015,metrology,,,,232,tools_per_year,13
+F00111,C00076,Falireth Kulim Plant 1,equipment_plant,Kulim,MYS,5.3274,100.5626,operating,2022,metrology,,,,282,tools_per_year,25
+F00112,C00077,Coranix Kuala Lumpur Plant 1,equipment_plant,Kuala Lumpur,MYS,3.1582,101.6405,operating,2009,metrology,,,,319,tools_per_year,10
+F00113,C00078,Araret Singapore Plant 1,equipment_plant,Singapore,SGP,1.3164,103.816,planned,2029,metrology,,,,674,tools_per_year,17
+F00114,C00079,Arenion Kumamoto Plant 1,equipment_plant,Kumamoto,JPN,32.7685,130.6517,operating,2019,metrology,,,,201,tools_per_year,13
+F00115,C00079,Arenion Yokkaichi Plant 2,equipment_plant,Yokkaichi,JPN,35.0122,136.5889,operating,2005,metrology,,,,620,tools_per_year,23
+F00116,C00080,Kavoet Icheon Plant 1,equipment_plant,Icheon,KOR,37.2417,127.4007,under_construction,2026,metrology,,,,700,tools_per_year,14
+F00117,C00081,Zoriora Columbus Plant 1,equipment_plant,Columbus,USA,39.9105,-82.9734,operating,2008,metrology,,,,412,tools_per_year,17
+F00118,C00081,Zoriora Dallas Plant 2,equipment_plant,Dallas,USA,32.8336,-96.7818,operating,2012,metrology,,,,498,tools_per_year,18
+F00119,C00082,Rosayn Munich Plant 1,equipment_plant,Munich,DEU,48.1455,11.5349,operating,2014,cleaning,,,,662,tools_per_year,16
+F00120,C00083,Caeloreth Jena Plant 1,equipment_plant,Jena,DEU,50.9604,11.5462,under_construction,2027,cleaning,,,,810,tools_per_year,14
+F00121,C00084,Brynix Yokkaichi Plant 1,equipment_plant,Yokkaichi,JPN,34.9961,136.674,operating,2000,cleaning,,,,803,tools_per_year,24
+F00122,C00085,Brynoark Tokyo Plant 1,equipment_plant,Tokyo,JPN,35.7344,139.6774,ramping,2025,cleaning,,,,916,tools_per_year,12
+F00123,C00086,Thaloys Kulim Plant 1,equipment_plant,Kulim,MYS,5.4047,100.5338,operating,2018,cleaning,,,,935,tools_per_year,16
+F00124,C00087,Meviet Santa Clara Plant 1,equipment_plant,Santa Clara,USA,37.311,-122.0165,operating,2007,cleaning,,,,117,tools_per_year,12
+F00125,C00088,Mevenark Shenzhen Plant 1,equipment_plant,Shenzhen,CHN,22.5129,114.0875,operating,2008,ion_implant,,,,392,tools_per_year,19
+F00126,C00088,Mevenark Beijing Plant 2,equipment_plant,Beijing,CHN,39.8614,116.3521,operating,1997,ion_implant,,,,264,tools_per_year,12
+F00127,C00089,Wynirark Beijing Plant 1,equipment_plant,Beijing,CHN,39.9146,116.4224,under_construction,2026,ion_implant,,,,808,tools_per_year,17
+F00128,C00090,Quinorane Boise Plant 1,equipment_plant,Boise,USA,43.5715,-116.1746,operating,2021,ion_implant,,,,646,tools_per_year,15
+F00129,C00090,Quinorane Boise Plant 2,equipment_plant,Boise,USA,43.6525,-116.2,operating,2004,ion_implant,,,,457,tools_per_year,24
+F00130,C00091,Ireara Boise Plant 1,equipment_plant,Boise,USA,43.6741,-116.1642,ramping,2024,ion_implant,,,,753,tools_per_year,12
+F00131,C00091,Ireara Columbus Plant 2,equipment_plant,Columbus,USA,39.9958,-82.951,operating,2008,ion_implant,,,,541,tools_per_year,12
+F00132,C00092,Keleix Boise Plant 1,equipment_plant,Boise,USA,43.6204,-116.1573,operating,1995,ion_implant,,,,499,tools_per_year,10
+F00133,C00092,Keleix Singapore Plant 2,equipment_plant,Singapore,SGP,1.336,103.8169,operating,2010,ion_implant,,,,844,tools_per_year,23
+F00134,C00093,Nyrelios Tokyo Plant 1,equipment_plant,Tokyo,JPN,35.6845,139.6826,operating,2002,assembly_tools,,,,57,tools_per_year,16
+F00135,C00094,Falueth Singapore Plant 1,equipment_plant,Singapore,SGP,1.3441,103.7849,operating,2013,assembly_tools,,,,414,tools_per_year,16
+F00136,C00094,Falueth Kumamoto Plant 2,equipment_plant,Kumamoto,JPN,32.7423,130.6985,operating,2002,assembly_tools,,,,1157,tools_per_year,13
+F00137,C00095,Mevorova Yokkaichi Plant 1,equipment_plant,Yokkaichi,JPN,35.0047,136.6267,operating,2003,assembly_tools,,,,802,tools_per_year,21
+F00138,C00095,Mevorova Tokyo Plant 2,equipment_plant,Tokyo,JPN,35.6353,139.7139,operating,2009,assembly_tools,,,,800,tools_per_year,11
+F00139,C00096,Arenell Singapore Plant 1,equipment_plant,Singapore,SGP,1.3492,103.7697,operating,1998,assembly_tools,,,,1012,tools_per_year,25
+F00140,C00096,Arenell Yokkaichi Plant 2,equipment_plant,Yokkaichi,JPN,34.9241,136.6662,operating,2020,assembly_tools,,,,131,tools_per_year,23
+F00141,C00097,Rosisora Singapore Plant 1,equipment_plant,Singapore,SGP,1.3795,103.8501,operating,1998,assembly_tools,,,,566,tools_per_year,22
+F00142,C00097,Rosisora Singapore Plant 2,equipment_plant,Singapore,SGP,1.3328,103.8139,operating,2000,assembly_tools,,,,263,tools_per_year,11
+F00143,C00098,Pelarova Singapore Plant 1,equipment_plant,Singapore,SGP,1.4071,103.8421,operating,2003,assembly_tools,,,,624,tools_per_year,12
+F00144,C00098,Pelarova Singapore Plant 2,equipment_plant,Singapore,SGP,1.3947,103.8324,operating,2022,assembly_tools,,,,907,tools_per_year,26
+F00145,C00099,Obriux Phoenix Plant 1,equipment_plant,Phoenix,USA,33.4828,-112.1219,operating,2009,assembly_tools,,,,581,tools_per_year,19
+F00146,C00099,Obriux Santa Clara Plant 2,equipment_plant,Santa Clara,USA,37.3894,-121.9628,operating,2017,assembly_tools,,,,353,tools_per_year,17
+F00147,C00100,Nyrenant Singapore Plant 1,equipment_plant,Singapore,SGP,1.3135,103.856,operating,2003,assembly_tools,,,,577,tools_per_year,19
+F00148,C00100,Nyrenant Santa Clara Plant 2,equipment_plant,Santa Clara,USA,37.2937,-121.9642,under_construction,2026,assembly_tools,,,,1154,tools_per_year,22
+F00149,C00111,Coriex Wuxi Fab 1,front_end_fab,Wuxi,CHN,31.5123,120.3114,operating,2018,logic,65nm,65.0,200.0,91000,wafer_starts_per_month,20
+F00150,C00111,Coriex Shenzhen Fab 2,front_end_fab,Shenzhen,CHN,22.5835,114.0254,operating,2009,logic,16nm,16.0,300.0,71000,wafer_starts_per_month,25
+F00151,C00111,Coriex Dallas Fab 3,front_end_fab,Dallas,USA,32.7939,-96.8444,ramping,2025,logic,7nm,7.0,300.0,102000,wafer_starts_per_month,32
+F00152,C00111,Coriex Xi'an Fab 4,front_end_fab,Xi'an,CHN,34.2901,108.8878,operating,2017,logic,16nm,16.0,300.0,34000,wafer_starts_per_month,20
+F00153,C00111,Coriex Xi'an Fab 5,front_end_fab,Xi'an,CHN,34.3626,108.9366,operating,2010,logic,7nm,7.0,300.0,48000,wafer_starts_per_month,24
+F00154,C00111,Coriex Beijing Fab 6,front_end_fab,Beijing,CHN,39.8813,116.4528,operating,1995,logic,16nm,16.0,300.0,90000,wafer_starts_per_month,27
+F00155,C00112,Nyreix Shanghai Fab 1,front_end_fab,Shanghai,CHN,31.2822,121.5045,ramping,2024,logic,28nm,28.0,300.0,18000,wafer_starts_per_month,23
+F00156,C00112,Nyreix Columbus Fab 2,front_end_fab,Columbus,USA,39.9661,-83.0529,operating,2000,logic,5nm,5.0,300.0,103000,wafer_starts_per_month,33
+F00157,C00112,Nyreix Dallas Fab 3,front_end_fab,Dallas,USA,32.7769,-96.7592,operating,2002,logic,28nm,28.0,300.0,70000,wafer_starts_per_month,27
+F00158,C00113,Alvays Kumamoto Fab 1,front_end_fab,Kumamoto,JPN,32.8082,130.6781,operating,2004,logic,130nm,130.0,200.0,57000,wafer_starts_per_month,27
+F00159,C00113,Alvays Jena Fab 2,front_end_fab,Jena,DEU,50.9487,11.5362,ramping,2024,logic,16nm,16.0,300.0,106000,wafer_starts_per_month,25
+F00160,C00113,Alvays Shenzhen Fab 3,front_end_fab,Shenzhen,CHN,22.5091,114.065,operating,2020,logic,7nm,7.0,300.0,52000,wafer_starts_per_month,29
+F00161,C00113,Alvays Shenzhen Fab 4,front_end_fab,Shenzhen,CHN,22.5318,114.0341,operating,1999,logic,40nm,40.0,300.0,30000,wafer_starts_per_month,15
+F00162,C00113,Alvays Beijing Fab 5,front_end_fab,Beijing,CHN,39.8634,116.4476,operating,2022,logic,16nm,16.0,300.0,35000,wafer_starts_per_month,20
+F00163,C00113,Alvays Wuxi Fab 6,front_end_fab,Wuxi,CHN,31.4664,120.2685,operating,2021,logic,65nm,65.0,200.0,34000,wafer_starts_per_month,16
+F00164,C00114,Mevient Wuxi Fab 1,front_end_fab,Wuxi,CHN,31.4516,120.3408,operating,2007,logic,65nm,65.0,300.0,91000,wafer_starts_per_month,23
+F00165,C00114,Mevient Wuhan Fab 2,front_end_fab,Wuhan,CHN,30.6015,114.3603,operating,2005,logic,16nm,16.0,300.0,77000,wafer_starts_per_month,12
+F00166,C00114,Mevient Beijing Fab 3,front_end_fab,Beijing,CHN,39.8708,116.433,operating,1999,logic,28nm,28.0,300.0,15000,wafer_starts_per_month,17
+F00167,C00114,Mevient Munich Fab 4,front_end_fab,Munich,DEU,48.1536,11.5474,operating,2002,logic,7nm,7.0,300.0,28000,wafer_starts_per_month,24
+F00168,C00114,Mevient Dallas Fab 5,front_end_fab,Dallas,USA,32.8282,-96.7602,operating,2003,logic,65nm,65.0,300.0,69000,wafer_starts_per_month,17
+F00169,C00115,Fenelant Hiroshima Fab 1,front_end_fab,Hiroshima,JPN,34.3678,132.5053,under_construction,2026,logic,16nm,16.0,300.0,58000,wafer_starts_per_month,21
+F00170,C00115,Fenelant Hiroshima Fab 2,front_end_fab,Hiroshima,JPN,34.3324,132.5011,planned,2029,logic,28nm,28.0,300.0,37000,wafer_starts_per_month,18
+F00171,C00115,Fenelant Chitose Fab 3,front_end_fab,Chitose,JPN,42.7654,141.6889,operating,2011,logic,130nm,130.0,300.0,46000,wafer_starts_per_month,28
+F00172,C00116,Syliset Hiroshima Fab 1,front_end_fab,Hiroshima,JPN,34.449,132.4283,under_construction,2026,logic,5nm,5.0,300.0,77000,wafer_starts_per_month,39
+F00173,C00116,Syliset Hiroshima Fab 2,front_end_fab,Hiroshima,JPN,34.3944,132.4285,ramping,2025,logic,40nm,40.0,300.0,98000,wafer_starts_per_month,27
+F00174,C00117,Davova Icheon Fab 1,front_end_fab,Icheon,KOR,37.2436,127.4731,operating,2017,logic,16nm,16.0,300.0,98000,wafer_starts_per_month,28
+F00175,C00117,Davova Cheongju Fab 2,front_end_fab,Cheongju,KOR,36.6126,127.4729,operating,1998,logic,40nm,40.0,300.0,97000,wafer_starts_per_month,20
+F00176,C00117,Davova Pyeongtaek Fab 3,front_end_fab,Pyeongtaek,KOR,37.0042,127.1052,operating,2008,logic,5nm,5.0,300.0,51000,wafer_starts_per_month,35
+F00177,C00117,Davova Cheongju Fab 4,front_end_fab,Cheongju,KOR,36.6419,127.5353,operating,2012,logic,16nm,16.0,300.0,43000,wafer_starts_per_month,28
+F00178,C00117,Davova Icheon Fab 5,front_end_fab,Icheon,KOR,37.2394,127.3902,operating,2022,logic,40nm,40.0,300.0,17000,wafer_starts_per_month,22
+F00179,C00118,Hesirant Cheongju Fab 1,front_end_fab,Cheongju,KOR,36.6081,127.4961,operating,2013,logic,16nm,16.0,300.0,63000,wafer_starts_per_month,21
+F00180,C00118,Hesirant Kumamoto Fab 2,front_end_fab,Kumamoto,JPN,32.8439,130.667,operating,2014,logic,130nm,130.0,300.0,17000,wafer_starts_per_month,14
+F00181,C00119,Caelisane Hefei Fab 1,front_end_fab,Hefei,CHN,31.7903,117.2571,operating,2023,logic,7nm,7.0,300.0,80000,wafer_starts_per_month,29
+F00182,C00119,Caelisane Singapore Fab 2,front_end_fab,Singapore,SGP,1.3795,103.8524,operating,2014,logic,130nm,130.0,300.0,82000,wafer_starts_per_month,12
+F00183,C00119,Caelisane Icheon Fab 3,front_end_fab,Icheon,KOR,37.2292,127.4593,operating,2001,logic,28nm,28.0,300.0,63000,wafer_starts_per_month,17
+F00184,C00120,Ryniell Jena Fab 1,front_end_fab,Jena,DEU,50.9137,11.6318,operating,2003,logic,28nm,28.0,300.0,71000,wafer_starts_per_month,13
+F00185,C00120,Ryniell Cheongju Fab 2,front_end_fab,Cheongju,KOR,36.682,127.5478,operating,2017,logic,130nm,130.0,200.0,63000,wafer_starts_per_month,15
+F00186,C00121,Zelaond Singapore Fab 1,front_end_fab,Singapore,SGP,1.3496,103.8476,operating,2006,logic,28nm,28.0,300.0,35000,wafer_starts_per_month,15
+F00187,C00121,Zelaond Hsinchu Fab 2,front_end_fab,Hsinchu,TWN,24.8148,121.0208,planned,2028,logic,5nm,5.0,300.0,82000,wafer_starts_per_month,39
+F00188,C00121,Zelaond Singapore Fab 3,front_end_fab,Singapore,SGP,1.3028,103.8768,ramping,2024,logic,28nm,28.0,300.0,79000,wafer_starts_per_month,27
+F00189,C00121,Zelaond Wuhan Fab 4,front_end_fab,Wuhan,CHN,30.5463,114.3159,operating,2013,logic,130nm,130.0,200.0,103000,wafer_starts_per_month,29
+F00190,C00121,Zelaond Kitakami Fab 5,front_end_fab,Kitakami,JPN,39.3319,141.0897,operating,2013,logic,16nm,16.0,300.0,41000,wafer_starts_per_month,23
+F00191,C00121,Zelaond Wuhan Fab 6,front_end_fab,Wuhan,CHN,30.6078,114.2564,operating,1996,logic,16nm,16.0,300.0,67000,wafer_starts_per_month,15
+F00192,C00122,Hesorios Hsinchu Fab 1,front_end_fab,Hsinchu,TWN,24.7447,120.9428,planned,2028,logic,3nm,3.0,300.0,96000,wafer_starts_per_month,29
+F00193,C00122,Hesorios Taichung Fab 2,front_end_fab,Taichung,TWN,24.1051,120.6249,operating,2018,logic,3nm,3.0,300.0,99000,wafer_starts_per_month,40
+F00194,C00123,Zelelios Munich Fab 1,front_end_fab,Munich,DEU,48.19,11.5746,operating,2014,logic,65nm,65.0,300.0,54000,wafer_starts_per_month,19
+F00195,C00123,Zelelios Nanjing Fab 2,front_end_fab,Nanjing,CHN,32.0189,118.7768,operating,2019,logic,7nm,7.0,300.0,18000,wafer_starts_per_month,22
+F00196,C00123,Zelelios Chitose Fab 3,front_end_fab,Chitose,JPN,42.865,141.7033,operating,1997,logic,130nm,130.0,300.0,85000,wafer_starts_per_month,12
+F00197,C00123,Zelelios Tainan Fab 4,front_end_fab,Tainan,TWN,23.0328,120.2374,operating,2016,logic,40nm,40.0,300.0,56000,wafer_starts_per_month,19
+F00198,C00124,Lunarora Kaohsiung Fab 1,front_end_fab,Kaohsiung,TWN,22.6274,120.303,operating,2008,logic,5nm,5.0,300.0,99000,wafer_starts_per_month,27
+F00199,C00124,Lunarora Tokyo Fab 2,front_end_fab,Tokyo,JPN,35.6304,139.6813,operating,2003,logic,7nm,7.0,300.0,91000,wafer_starts_per_month,25
+F00200,C00124,Lunarora Kaohsiung Fab 3,front_end_fab,Kaohsiung,TWN,22.638,120.2633,operating,2007,logic,3nm,3.0,300.0,55000,wafer_starts_per_month,29
+F00201,C00125,Tavoant Malta Fab 1,front_end_fab,Malta,USA,42.9935,-73.8416,operating,2015,logic,28nm,28.0,300.0,89000,wafer_starts_per_month,19
+F00202,C00125,Tavoant Hillsboro Fab 2,front_end_fab,Hillsboro,USA,45.5012,-123.0216,under_construction,2027,logic,3nm,3.0,300.0,80000,wafer_starts_per_month,27
+F00203,C00126,Belarent Malta Fab 1,front_end_fab,Malta,USA,42.9471,-73.7565,operating,2001,logic,16nm,16.0,300.0,18000,wafer_starts_per_month,23
+F00204,C00126,Belarent Regensburg Fab 2,front_end_fab,Regensburg,DEU,48.9633,12.0636,operating,1995,logic,130nm,130.0,200.0,60000,wafer_starts_per_month,19
+F00205,C00127,Lunorova Xi'an Fab 1,memory_fab,Xi'an,CHN,34.3919,108.9402,operating,2008,dram_hbm,1a DRAM,,300.0,101000,wafer_starts_per_month,30
+F00206,C00127,Lunorova Wuhan Fab 2,memory_fab,Wuhan,CHN,30.5984,114.2757,operating,1996,dram_hbm,1b DRAM,,300.0,40000,wafer_starts_per_month,16
+F00207,C00127,Lunorova Shenzhen Fab 3,memory_fab,Shenzhen,CHN,22.489,114.0517,operating,2016,dram_hbm,1b DRAM,,300.0,83000,wafer_starts_per_month,29
+F00208,C00127,Lunorova Singapore Fab 4,memory_fab,Singapore,SGP,1.3602,103.876,ramping,2024,dram_hbm,1c DRAM,,300.0,89000,wafer_starts_per_month,18
+F00209,C00128,Xaniys Hefei Fab 1,memory_fab,Hefei,CHN,31.762,117.2029,under_construction,2026,dram_hbm,1c DRAM,,300.0,66000,wafer_starts_per_month,25
+F00210,C00128,Xaniys Shenzhen Fab 2,memory_fab,Shenzhen,CHN,22.571,114.0524,operating,2007,dram_hbm,1b DRAM,,300.0,154000,wafer_starts_per_month,36
+F00211,C00129,Draelane Chitose Fab 1,memory_fab,Chitose,JPN,42.8123,141.6595,operating,2012,dram_hbm,1b DRAM,,300.0,94000,wafer_starts_per_month,35
+F00212,C00129,Draelane Kumamoto Fab 2,memory_fab,Kumamoto,JPN,32.7684,130.7101,operating,1995,dram_hbm,1c DRAM,,300.0,103000,wafer_starts_per_month,21
+F00213,C00129,Draelane Hiroshima Fab 3,memory_fab,Hiroshima,JPN,34.3794,132.4483,operating,2015,dram_hbm,1c DRAM,,300.0,150000,wafer_starts_per_month,35
+F00214,C00129,Draelane Kumamoto Fab 4,memory_fab,Kumamoto,JPN,32.8219,130.7388,operating,2003,dram_hbm,1a DRAM,,300.0,96000,wafer_starts_per_month,16
+F00215,C00130,Zoruark Phoenix Fab 1,memory_fab,Phoenix,USA,33.4955,-112.079,operating,2015,dram_hbm,1a DRAM,,300.0,82000,wafer_starts_per_month,28
+F00216,C00130,Zoruark Kumamoto Fab 2,memory_fab,Kumamoto,JPN,32.7564,130.7431,operating,2005,dram_hbm,1a DRAM,,300.0,57000,wafer_starts_per_month,34
+F00217,C00130,Zoruark Kumamoto Fab 3,memory_fab,Kumamoto,JPN,32.7956,130.7256,operating,2011,dram_hbm,1a DRAM,,300.0,164000,wafer_starts_per_month,21
+F00218,C00130,Zoruark Yokkaichi Fab 4,memory_fab,Yokkaichi,JPN,34.9895,136.5738,operating,2006,dram_hbm,1c DRAM,,300.0,129000,wafer_starts_per_month,23
+F00219,C00130,Zoruark Hiroshima Fab 5,memory_fab,Hiroshima,JPN,34.4135,132.4701,operating,2003,dram_hbm,1b DRAM,,300.0,135000,wafer_starts_per_month,22
+F00220,C00131,Maraet Hwaseong Fab 1,memory_fab,Hwaseong,KOR,37.2116,126.8423,operating,1999,dram_hbm,1c DRAM,,300.0,157000,wafer_starts_per_month,18
+F00221,C00131,Maraet Yongin Fab 2,memory_fab,Yongin,KOR,37.3,127.147,operating,2006,dram_hbm,1a DRAM,,300.0,135000,wafer_starts_per_month,30
+F00222,C00131,Maraet Pyeongtaek Fab 3,memory_fab,Pyeongtaek,KOR,36.9908,127.1567,operating,2001,dram_hbm,1a DRAM,,300.0,165000,wafer_starts_per_month,19
+F00223,C00132,Joroex Yongin Fab 1,memory_fab,Yongin,KOR,37.2487,127.2255,operating,2002,dram_hbm,1c DRAM,,300.0,57000,wafer_starts_per_month,20
+F00224,C00132,Joroex Hwaseong Fab 2,memory_fab,Hwaseong,KOR,37.2529,126.8089,ramping,2025,dram_hbm,1b DRAM,,300.0,169000,wafer_starts_per_month,18
+F00225,C00132,Joroex Hwaseong Fab 3,memory_fab,Hwaseong,KOR,37.1593,126.8031,ramping,2024,dram_hbm,1c DRAM,,300.0,70000,wafer_starts_per_month,29
+F00226,C00132,Joroex Hwaseong Fab 4,memory_fab,Hwaseong,KOR,37.1744,126.8609,operating,2014,dram_hbm,1b DRAM,,300.0,128000,wafer_starts_per_month,29
+F00227,C00132,Joroex Pyeongtaek Fab 5,memory_fab,Pyeongtaek,KOR,37.0169,127.1258,operating,2006,dram_hbm,1a DRAM,,300.0,123000,wafer_starts_per_month,29
+F00228,C00133,Seleova Wuxi Fab 1,memory_fab,Wuxi,CHN,31.5014,120.344,operating,2018,nand,1a NAND,,300.0,80000,wafer_starts_per_month,31
+F00229,C00133,Seleova Xi'an Fab 2,memory_fab,Xi'an,CHN,34.3073,108.9084,ramping,2025,nand,1b NAND,,300.0,134000,wafer_starts_per_month,31
+F00230,C00133,Seleova Hefei Fab 3,memory_fab,Hefei,CHN,31.8184,117.1992,operating,1999,nand,1b NAND,,300.0,42000,wafer_starts_per_month,22
+F00231,C00133,Seleova Wuxi Fab 4,memory_fab,Wuxi,CHN,31.5052,120.2585,operating,2013,nand,1b NAND,,300.0,97000,wafer_starts_per_month,24
+F00232,C00133,Seleova Wuxi Fab 5,memory_fab,Wuxi,CHN,31.5274,120.3597,under_construction,2026,nand,1a NAND,,300.0,152000,wafer_starts_per_month,19
+F00233,C00134,Fenanant Wuhan Fab 1,memory_fab,Wuhan,CHN,30.606,114.2728,under_construction,2026,nand,1b NAND,,300.0,160000,wafer_starts_per_month,21
+F00234,C00134,Fenanant Hefei Fab 2,memory_fab,Hefei,CHN,31.8315,117.1968,operating,2022,nand,1b NAND,,300.0,126000,wafer_starts_per_month,23
+F00235,C00135,Norelys Boise Fab 1,memory_fab,Boise,USA,43.58,-116.2547,operating,2017,nand,1b NAND,,300.0,158000,wafer_starts_per_month,30
+F00236,C00135,Norelys Austin Fab 2,memory_fab,Austin,USA,30.2738,-97.7755,operating,2001,nand,1a NAND,,300.0,160000,wafer_starts_per_month,26
+F00237,C00136,Nyranios Hillsboro Fab 1,memory_fab,Hillsboro,USA,45.5125,-122.9397,ramping,2025,nand,1a NAND,,300.0,129000,wafer_starts_per_month,22
+F00238,C00136,Nyranios Malta Fab 2,memory_fab,Malta,USA,42.9587,-73.779,operating,1998,nand,1a NAND,,300.0,46000,wafer_starts_per_month,32
+F00239,C00136,Nyranios Malta Fab 3,memory_fab,Malta,USA,42.9438,-73.7425,operating,2011,nand,1a NAND,,300.0,73000,wafer_starts_per_month,20
+F00240,C00136,Nyranios Austin Fab 4,memory_fab,Austin,USA,30.2578,-97.7705,planned,2029,nand,1c NAND,,300.0,62000,wafer_starts_per_month,29
+F00241,C00136,Nyranios Dallas Fab 5,memory_fab,Dallas,USA,32.7706,-96.793,operating,2010,nand,1a NAND,,300.0,117000,wafer_starts_per_month,30
+F00242,C00137,Corisent Wuxi Packaging Plant 1,packaging_plant,Wuxi,CHN,31.4502,120.2693,operating,1996,advanced_packaging,,,,38000,interposer_wafers_per_month,16
+F00243,C00137,Corisent Wuxi Packaging Plant 2,packaging_plant,Wuxi,CHN,31.4729,120.2831,operating,2005,advanced_packaging,,,,13000,interposer_wafers_per_month,18
+F00244,C00137,Corisent Wuxi Packaging Plant 3,packaging_plant,Wuxi,CHN,31.4568,120.3086,operating,2023,advanced_packaging,,,,30000,interposer_wafers_per_month,24
+F00245,C00138,Thalirell Shenzhen Packaging Plant 1,packaging_plant,Shenzhen,CHN,22.4862,114.112,operating,2007,advanced_packaging,,,,19000,interposer_wafers_per_month,23
+F00246,C00139,Lunirium Nanjing Packaging Plant 1,packaging_plant,Nanjing,CHN,32.0911,118.7812,operating,2006,advanced_packaging,,,,25000,interposer_wafers_per_month,12
+F00247,C00139,Lunirium Cheongju Packaging Plant 2,packaging_plant,Cheongju,KOR,36.6794,127.5334,operating,2018,advanced_packaging,,,,36000,interposer_wafers_per_month,21
+F00248,C00139,Lunirium Icheon Packaging Plant 3,packaging_plant,Icheon,KOR,37.2298,127.4146,operating,2008,advanced_packaging,,,,11000,interposer_wafers_per_month,18
+F00249,C00139,Lunirium Cheongju Packaging Plant 4,packaging_plant,Cheongju,KOR,36.6923,127.444,under_construction,2027,advanced_packaging,,,,39000,interposer_wafers_per_month,12
+F00250,C00140,Corenix Hwaseong Packaging Plant 1,packaging_plant,Hwaseong,KOR,37.1768,126.8218,operating,2018,advanced_packaging,,,,28000,interposer_wafers_per_month,18
+F00251,C00140,Corenix Kaohsiung Packaging Plant 2,packaging_plant,Kaohsiung,TWN,22.6872,120.276,operating,2021,advanced_packaging,,,,22000,interposer_wafers_per_month,17
+F00252,C00141,Galorios Taichung Packaging Plant 1,packaging_plant,Taichung,TWN,24.0948,120.6373,ramping,2025,advanced_packaging,,,,25000,interposer_wafers_per_month,20
+F00253,C00141,Galorios Manila Packaging Plant 2,packaging_plant,Manila,PHL,14.5797,121.0202,ramping,2024,advanced_packaging,,,,32000,interposer_wafers_per_month,16
+F00254,C00141,Galorios Hsinchu Packaging Plant 3,packaging_plant,Hsinchu,TWN,24.7969,120.9361,operating,1997,advanced_packaging,,,,16000,interposer_wafers_per_month,19
+F00255,C00141,Galorios Taichung Packaging Plant 4,packaging_plant,Taichung,TWN,24.1262,120.7289,under_construction,2027,advanced_packaging,,,,27000,interposer_wafers_per_month,21
+F00256,C00142,Zoriara Kaohsiung Packaging Plant 1,packaging_plant,Kaohsiung,TWN,22.6596,120.2549,operating,2013,advanced_packaging,,,,30000,interposer_wafers_per_month,24
+F00257,C00142,Zoriara Kuala Lumpur Packaging Plant 2,packaging_plant,Kuala Lumpur,MYS,3.0858,101.6531,operating,2000,advanced_packaging,,,,24000,interposer_wafers_per_month,18
+F00258,C00143,Aririum Taichung Packaging Plant 1,packaging_plant,Taichung,TWN,24.1709,120.6165,ramping,2024,advanced_packaging,,,,24000,interposer_wafers_per_month,18
+F00259,C00143,Aririum Taoyuan Packaging Plant 2,packaging_plant,Taoyuan,TWN,25.003,121.3218,operating,1999,advanced_packaging,,,,8000,interposer_wafers_per_month,26
+F00260,C00143,Aririum Tainan Packaging Plant 3,packaging_plant,Tainan,TWN,23.0204,120.2151,operating,2004,advanced_packaging,,,,11000,interposer_wafers_per_month,16
+F00261,C00144,Velisova Kaohsiung Packaging Plant 1,packaging_plant,Kaohsiung,TWN,22.5763,120.3516,operating,1995,advanced_packaging,,,,21000,interposer_wafers_per_month,25
+F00262,C00144,Velisova Icheon Packaging Plant 2,packaging_plant,Icheon,KOR,37.3193,127.4286,operating,2002,advanced_packaging,,,,17000,interposer_wafers_per_month,16
+F00263,C00145,Velaneth Penang Packaging Plant 1,packaging_plant,Penang,MYS,5.4173,100.2819,operating,2007,advanced_packaging,,,,38000,interposer_wafers_per_month,14
+F00264,C00146,Pyrion Hsinchu Packaging Plant 1,packaging_plant,Hsinchu,TWN,24.7683,121.006,under_construction,2026,advanced_packaging,,,,32000,interposer_wafers_per_month,22
+F00265,C00147,Eskiseon Kaohsiung Packaging Plant 1,packaging_plant,Kaohsiung,TWN,22.5829,120.2925,operating,2002,standard_packaging,,,,110000000,packages_per_month,9
+F00266,C00147,Eskiseon Xi'an Packaging Plant 2,packaging_plant,Xi'an,CHN,34.3584,108.9411,operating,2008,standard_packaging,,,,502000000,packages_per_month,7
+F00267,C00147,Eskiseon Kulim Packaging Plant 3,packaging_plant,Kulim,MYS,5.341,100.5965,operating,2012,standard_packaging,,,,244000000,packages_per_month,10
+F00268,C00148,Lunirex Taichung Packaging Plant 1,packaging_plant,Taichung,TWN,24.1681,120.6802,operating,2020,standard_packaging,,,,191000000,packages_per_month,6
+F00269,C00148,Lunirex Xi'an Packaging Plant 2,packaging_plant,Xi'an,CHN,34.39,108.9388,under_construction,2027,standard_packaging,,,,504000000,packages_per_month,15
+F00270,C00148,Lunirex Nanjing Packaging Plant 3,packaging_plant,Nanjing,CHN,32.0908,118.8093,operating,2016,standard_packaging,,,,469000000,packages_per_month,16
+F00271,C00148,Lunirex Xi'an Packaging Plant 4,packaging_plant,Xi'an,CHN,34.3254,108.904,operating,2023,standard_packaging,,,,355000000,packages_per_month,15
+F00272,C00149,Eskiet Hefei Packaging Plant 1,packaging_plant,Hefei,CHN,31.8138,117.2735,operating,2004,standard_packaging,,,,371000000,packages_per_month,9
+F00273,C00149,Eskiet Xi'an Packaging Plant 2,packaging_plant,Xi'an,CHN,34.3115,108.8911,operating,1997,standard_packaging,,,,341000000,packages_per_month,9
+F00274,C00150,Coriane Pyeongtaek Packaging Plant 1,packaging_plant,Pyeongtaek,KOR,37.0498,127.0853,operating,2022,standard_packaging,,,,598000000,packages_per_month,8
+F00275,C00151,Wynond Icheon Packaging Plant 1,packaging_plant,Icheon,KOR,37.2514,127.4275,operating,1997,standard_packaging,,,,470000000,packages_per_month,9
+F00276,C00151,Wynond Kuala Lumpur Packaging Plant 2,packaging_plant,Kuala Lumpur,MYS,3.1837,101.6349,operating,2013,standard_packaging,,,,381000000,packages_per_month,8
+F00277,C00151,Wynond Laguna Packaging Plant 3,packaging_plant,Laguna,PHL,14.1513,121.3619,operating,2003,standard_packaging,,,,272000000,packages_per_month,9
+F00278,C00151,Wynond Icheon Packaging Plant 4,packaging_plant,Icheon,KOR,37.2899,127.4795,operating,2015,standard_packaging,,,,73000000,packages_per_month,12
+F00279,C00152,Calaneth Kuala Lumpur Packaging Plant 1,packaging_plant,Kuala Lumpur,MYS,3.0883,101.7168,operating,2003,standard_packaging,,,,162000000,packages_per_month,11
+F00280,C00152,Calaneth Xi'an Packaging Plant 2,packaging_plant,Xi'an,CHN,34.3589,108.9581,under_construction,2027,standard_packaging,,,,230000000,packages_per_month,10
+F00281,C00152,Calaneth Penang Packaging Plant 3,packaging_plant,Penang,MYS,5.4274,100.2793,operating,2018,standard_packaging,,,,537000000,packages_per_month,10
+F00282,C00152,Calaneth Kuala Lumpur Packaging Plant 4,packaging_plant,Kuala Lumpur,MYS,3.1741,101.7294,operating,2012,standard_packaging,,,,503000000,packages_per_month,6
+F00283,C00153,Rynenion Taichung Packaging Plant 1,packaging_plant,Taichung,TWN,24.1718,120.6407,operating,1999,standard_packaging,,,,161000000,packages_per_month,8
+F00284,C00153,Rynenion Taoyuan Packaging Plant 2,packaging_plant,Taoyuan,TWN,24.9527,121.2686,operating,2017,standard_packaging,,,,155000000,packages_per_month,10
+F00285,C00153,Rynenion Manila Packaging Plant 3,packaging_plant,Manila,PHL,14.6074,120.9665,planned,2028,standard_packaging,,,,389000000,packages_per_month,10
+F00286,C00154,Elelark Bac Ninh Packaging Plant 1,packaging_plant,Bac Ninh,VNM,21.2125,106.0249,operating,2002,standard_packaging,,,,455000000,packages_per_month,7
+F00287,C00154,Elelark Singapore Packaging Plant 2,packaging_plant,Singapore,SGP,1.3775,103.8026,operating,2016,standard_packaging,,,,544000000,packages_per_month,8
+F00288,C00155,Lunuara Ho Chi Minh City Packaging Plant 1,packaging_plant,Ho Chi Minh City,VNM,10.7826,106.6573,operating,2004,standard_packaging,,,,301000000,packages_per_month,7
+F00289,C00156,Yaraova Tainan Packaging Plant 1,packaging_plant,Tainan,TWN,22.9887,120.2443,operating,2021,standard_packaging,,,,558000000,packages_per_month,16
+F00290,C00157,Gryarex Laguna Packaging Plant 1,packaging_plant,Laguna,PHL,14.1821,121.3129,operating,2018,standard_packaging,,,,252000000,packages_per_month,14
+F00291,C00157,Gryarex Kulim Packaging Plant 2,packaging_plant,Kulim,MYS,5.3345,100.6133,operating,2019,standard_packaging,,,,497000000,packages_per_month,7
+F00292,C00158,Lunanond Wuhan Packaging Plant 1,packaging_plant,Wuhan,CHN,30.5625,114.3492,operating,2022,standard_packaging,,,,295000000,packages_per_month,6
+F00293,C00158,Lunanond Hsinchu Packaging Plant 2,packaging_plant,Hsinchu,TWN,24.8297,120.9309,under_construction,2026,standard_packaging,,,,60000000,packages_per_month,13
+F00294,C00158,Lunanond Hsinchu Packaging Plant 3,packaging_plant,Hsinchu,TWN,24.8222,120.9233,operating,1996,standard_packaging,,,,80000000,packages_per_month,9
+F00295,C00158,Lunanond Nanjing Packaging Plant 4,packaging_plant,Nanjing,CHN,32.017,118.8022,operating,2005,standard_packaging,,,,382000000,packages_per_month,16
+F00296,C00159,Iriseth Austin Packaging Plant 1,packaging_plant,Austin,USA,30.2254,-97.7748,operating,2010,standard_packaging,,,,468000000,packages_per_month,6
+F00297,C00159,Iriseth Kulim Packaging Plant 2,packaging_plant,Kulim,MYS,5.3539,100.6061,under_construction,2027,standard_packaging,,,,128000000,packages_per_month,12
+F00298,C00159,Iriseth Hillsboro Packaging Plant 3,packaging_plant,Hillsboro,USA,45.4975,-122.9704,operating,2019,standard_packaging,,,,245000000,packages_per_month,8
+F00299,C00159,Iriseth Boise Packaging Plant 4,packaging_plant,Boise,USA,43.5628,-116.2294,operating,2003,standard_packaging,,,,112000000,packages_per_month,11
+F00300,C00160,Zelaex Malta Packaging Plant 1,packaging_plant,Malta,USA,42.9402,-73.802,operating,2005,standard_packaging,,,,105000000,packages_per_month,13
+F00301,C00160,Zelaex Hwaseong Packaging Plant 2,packaging_plant,Hwaseong,KOR,37.1793,126.7832,planned,2028,standard_packaging,,,,293000000,packages_per_month,7
+F00302,C00160,Zelaex Santa Clara Packaging Plant 3,packaging_plant,Santa Clara,USA,37.3199,-121.9685,operating,2007,standard_packaging,,,,554000000,packages_per_month,16
+F00303,C00261,Quineth Beijing Assembly 1,server_assembly,Beijing,CHN,39.9373,116.3812,ramping,2025,ai_servers,,,,4488,racks_per_month,4
+F00304,C00261,Quineth Monterrey Assembly 2,server_assembly,Monterrey,MEX,25.6657,-100.3072,operating,2016,ai_servers,,,,8131,racks_per_month,5
+F00305,C00262,Jorux Ho Chi Minh City Assembly 1,server_assembly,Ho Chi Minh City,VNM,10.8261,106.6048,planned,2029,ai_servers,,,,2045,racks_per_month,5
+F00306,C00263,Wynorios Tainan Assembly 1,server_assembly,Tainan,TWN,22.972,120.1711,operating,2003,ai_servers,,,,6939,racks_per_month,4
+F00307,C00263,Wynorios Guadalajara Assembly 2,server_assembly,Guadalajara,MEX,20.7115,-103.3663,operating,1999,ai_servers,,,,11227,racks_per_month,7
+F00308,C00263,Wynorios Guadalajara Assembly 3,server_assembly,Guadalajara,MEX,20.6187,-103.3867,ramping,2024,ai_servers,,,,8379,racks_per_month,5
+F00309,C00263,Wynorios Monterrey Assembly 4,server_assembly,Monterrey,MEX,25.6454,-100.2621,operating,2004,ai_servers,,,,9150,racks_per_month,5
+F00310,C00264,Pyriux Malta Assembly 1,server_assembly,Malta,USA,43.006,-73.764,under_construction,2027,ai_servers,,,,3888,racks_per_month,6
+F00311,C00264,Pyriux Bangkok Assembly 2,server_assembly,Bangkok,THA,13.7512,100.5349,operating,2011,ai_servers,,,,3284,racks_per_month,6
+F00312,C00264,Pyriux Guadalajara Assembly 3,server_assembly,Guadalajara,MEX,20.6689,-103.353,operating,2006,ai_servers,,,,10819,racks_per_month,5
+F00313,C00265,Falanex Kulim Assembly 1,server_assembly,Kulim,MYS,5.3169,100.5718,operating,2011,ai_servers,,,,1041,racks_per_month,5
+F00314,C00265,Falanex Hefei Assembly 2,server_assembly,Hefei,CHN,31.8382,117.2453,operating,1999,ai_servers,,,,11661,racks_per_month,6
+F00315,C00265,Falanex Kaohsiung Assembly 3,server_assembly,Kaohsiung,TWN,22.6074,120.317,operating,2007,ai_servers,,,,7489,racks_per_month,4
+F00316,C00265,Falanex Monterrey Assembly 4,server_assembly,Monterrey,MEX,25.6371,-100.3436,operating,2016,ai_servers,,,,2231,racks_per_month,2
+F00317,C00266,Aroeth Guadalajara Assembly 1,server_assembly,Guadalajara,MEX,20.6315,-103.3246,operating,2000,ai_servers,,,,1932,racks_per_month,7
+F00318,C00266,Aroeth Guadalajara Assembly 2,server_assembly,Guadalajara,MEX,20.6747,-103.3827,operating,2005,ai_servers,,,,5498,racks_per_month,3
+F00319,C00266,Aroeth Guadalajara Assembly 3,server_assembly,Guadalajara,MEX,20.6534,-103.3391,operating,2005,ai_servers,,,,8626,racks_per_month,8
+F00320,C00266,Aroeth Guadalajara Assembly 4,server_assembly,Guadalajara,MEX,20.6896,-103.3598,operating,1998,ai_servers,,,,1995,racks_per_month,2
+F00321,C00267,Itharell Monterrey Assembly 1,server_assembly,Monterrey,MEX,25.737,-100.3011,ramping,2025,ai_servers,,,,10492,racks_per_month,6
+F00322,C00268,Caelaell Penang Assembly 1,server_assembly,Penang,MYS,5.4585,100.2898,operating,2009,ai_servers,,,,4755,racks_per_month,7
+F00323,C00268,Caelaell Columbus Assembly 2,server_assembly,Columbus,USA,39.9208,-82.9899,operating,2019,ai_servers,,,,7888,racks_per_month,3
+F00324,C00269,Peliark Monterrey Assembly 1,server_assembly,Monterrey,MEX,25.6955,-100.3673,operating,2010,ai_servers,,,,567,racks_per_month,4
+F00325,C00269,Peliark Taichung Assembly 2,server_assembly,Taichung,TWN,24.1925,120.6164,ramping,2024,ai_servers,,,,1227,racks_per_month,8
+F00326,C00269,Peliark Singapore Assembly 3,server_assembly,Singapore,SGP,1.3397,103.8685,ramping,2025,ai_servers,,,,7585,racks_per_month,5
+F00327,C00269,Peliark Kuala Lumpur Assembly 4,server_assembly,Kuala Lumpur,MYS,3.198,101.7123,operating,2006,ai_servers,,,,3082,racks_per_month,8
+F00328,C00270,Sylent Hsinchu Assembly 1,server_assembly,Hsinchu,TWN,24.8316,120.9177,operating,2014,ai_servers,,,,9409,racks_per_month,8
+F00329,C00271,Nyryn Hefei Assembly 1,server_assembly,Hefei,CHN,31.8688,117.2058,operating,2012,ai_servers,,,,9313,racks_per_month,8
+F00330,C00271,Nyryn Taichung Assembly 2,server_assembly,Taichung,TWN,24.1635,120.6902,under_construction,2026,ai_servers,,,,8775,racks_per_month,2
+F00331,C00271,Nyryn Ciudad Juarez Assembly 3,server_assembly,Ciudad Juarez,MEX,31.7376,-106.3984,operating,1995,ai_servers,,,,5216,racks_per_month,8
+F00332,C00271,Nyryn Guadalajara Assembly 4,server_assembly,Guadalajara,MEX,20.6459,-103.3188,operating,1996,ai_servers,,,,7509,racks_per_month,3
+F00333,C00272,Kelenora Munich Assembly 1,server_assembly,Munich,DEU,48.0864,11.5296,under_construction,2027,ai_servers,,,,11216,racks_per_month,7
+F00334,C00273,Velelium Dallas Assembly 1,server_assembly,Dallas,USA,32.794,-96.8178,operating,2005,ai_servers,,,,10573,racks_per_month,7
+F00335,C00273,Velelium Singapore Assembly 2,server_assembly,Singapore,SGP,1.3168,103.7645,operating,2002,ai_servers,,,,8825,racks_per_month,8
+F00336,C00274,Brynelux Hyderabad Assembly 1,server_assembly,Hyderabad,IND,17.3858,78.5339,operating,2023,ai_servers,,,,10611,racks_per_month,8
+F00337,C00275,Brynaix Monterrey Assembly 1,server_assembly,Monterrey,MEX,25.7284,-100.2971,operating,2008,ai_servers,,,,9377,racks_per_month,2
+F00338,C00275,Brynaix Singapore Assembly 2,server_assembly,Singapore,SGP,1.3989,103.8392,operating,2013,ai_servers,,,,7460,racks_per_month,6
+F00339,C00275,Brynaix Kuala Lumpur Assembly 3,server_assembly,Kuala Lumpur,MYS,3.1411,101.7172,operating,2017,ai_servers,,,,4382,racks_per_month,7
+F00340,C00275,Brynaix Jena Assembly 4,server_assembly,Jena,DEU,50.9515,11.616,operating,1997,ai_servers,,,,3953,racks_per_month,4
+F00341,C00276,Lorieth Wuhan Assembly 1,server_assembly,Wuhan,CHN,30.6135,114.3515,operating,2006,ai_servers,,,,4711,racks_per_month,5
+F00342,C00277,Galarova Monterrey Assembly 1,server_assembly,Monterrey,MEX,25.693,-100.285,operating,2002,ai_servers,,,,4328,racks_per_month,4
+F00343,C00278,Gryaneth Penang Assembly 1,server_assembly,Penang,MYS,5.4549,100.3315,operating,1997,ai_servers,,,,4835,racks_per_month,8
+F00344,C00278,Gryaneth Wuhan Assembly 2,server_assembly,Wuhan,CHN,30.5981,114.3055,ramping,2025,ai_servers,,,,8633,racks_per_month,2
+F00345,C00278,Gryaneth Monterrey Assembly 3,server_assembly,Monterrey,MEX,25.7336,-100.3772,operating,2023,ai_servers,,,,9939,racks_per_month,7
+F00346,C00279,Pyroant Munich Assembly 1,server_assembly,Munich,DEU,48.1103,11.5922,operating,2011,ai_servers,,,,8946,racks_per_month,8
+F00347,C00279,Pyroant Hefei Assembly 2,server_assembly,Hefei,CHN,31.8592,117.2559,operating,2001,ai_servers,,,,6916,racks_per_month,4
+F00348,C00279,Pyroant Taichung Assembly 3,server_assembly,Taichung,TWN,24.1099,120.6673,operating,1999,ai_servers,,,,8694,racks_per_month,8
+F00349,C00280,Taviond Beijing Assembly 1,server_assembly,Beijing,CHN,39.9342,116.4552,operating,2001,ai_servers,,,,3496,racks_per_month,5
+F00350,C00280,Taviond Guadalajara Assembly 2,server_assembly,Guadalajara,MEX,20.6102,-103.294,operating,2004,ai_servers,,,,6588,racks_per_month,2
+F00351,C00281,Ithelet Kaohsiung Assembly 1,server_assembly,Kaohsiung,TWN,22.6709,120.3035,operating,2000,ai_servers,,,,8583,racks_per_month,2
+F00352,C00281,Ithelet Monterrey Assembly 2,server_assembly,Monterrey,MEX,25.7358,-100.3037,operating,2008,ai_servers,,,,2037,racks_per_month,7
+F00353,C00281,Ithelet Taoyuan Assembly 3,server_assembly,Taoyuan,TWN,24.9935,121.2727,operating,2011,ai_servers,,,,10650,racks_per_month,7
+F00354,C00282,Kavelium Nanjing Assembly 1,server_assembly,Nanjing,CHN,32.0559,118.7411,operating,2018,ai_servers,,,,5987,racks_per_month,3
+F00355,C00282,Kavelium Monterrey Assembly 2,server_assembly,Monterrey,MEX,25.7353,-100.3745,planned,2029,ai_servers,,,,4058,racks_per_month,6
+F00356,C00282,Kavelium Beijing Assembly 3,server_assembly,Beijing,CHN,39.9063,116.3688,operating,2013,ai_servers,,,,3124,racks_per_month,6
+F00357,C00282,Kavelium Ho Chi Minh City Assembly 4,server_assembly,Ho Chi Minh City,VNM,10.8579,106.5745,operating,1999,ai_servers,,,,8176,racks_per_month,5
+F00358,C00283,Wynirys Monterrey Assembly 1,server_assembly,Monterrey,MEX,25.6847,-100.325,operating,2005,ai_servers,,,,7872,racks_per_month,7
+F00359,C00283,Wynirys Taichung Assembly 2,server_assembly,Taichung,TWN,24.1702,120.6471,operating,1997,ai_servers,,,,2320,racks_per_month,4
+F00360,C00284,Veluora Hefei Assembly 1,server_assembly,Hefei,CHN,31.8527,117.2044,operating,2012,ai_servers,,,,4969,racks_per_month,2
+F00361,C00284,Veluora Singapore Assembly 2,server_assembly,Singapore,SGP,1.4094,103.8763,operating,2014,ai_servers,,,,10105,racks_per_month,3
+F00362,C00284,Veluora Monterrey Assembly 3,server_assembly,Monterrey,MEX,25.6947,-100.2807,operating,2009,ai_servers,,,,4711,racks_per_month,5
+F00363,C00284,Veluora Phoenix Assembly 4,server_assembly,Phoenix,USA,33.504,-112.072,operating,2008,ai_servers,,,,5862,racks_per_month,8
+F00364,C00285,Xanarix Malta Assembly 1,server_assembly,Malta,USA,42.9897,-73.7521,ramping,2025,ai_servers,,,,1333,racks_per_month,2
+F00365,C00285,Xanarix Kulim Assembly 2,server_assembly,Kulim,MYS,5.3173,100.5598,operating,1999,ai_servers,,,,9503,racks_per_month,2
+F00366,C00285,Xanarix Monterrey Assembly 3,server_assembly,Monterrey,MEX,25.7144,-100.3788,operating,2010,ai_servers,,,,11894,racks_per_month,3
+F00367,C00285,Xanarix Ciudad Juarez Assembly 4,server_assembly,Ciudad Juarez,MEX,31.7439,-106.3625,ramping,2025,ai_servers,,,,10602,racks_per_month,2
+F00368,C00286,Coroix Monterrey Assembly 1,server_assembly,Monterrey,MEX,25.644,-100.2691,operating,1999,ai_servers,,,,5744,racks_per_month,3
+F00369,C00286,Coroix Hsinchu Assembly 2,server_assembly,Hsinchu,TWN,24.8593,121.0152,under_construction,2027,ai_servers,,,,9971,racks_per_month,4
+F00370,C00286,Coroix Columbus Assembly 3,server_assembly,Columbus,USA,39.9935,-82.9404,operating,1995,ai_servers,,,,5017,racks_per_month,6
+F00371,C00286,Coroix Shanghai Assembly 4,server_assembly,Shanghai,CHN,31.2303,121.4618,operating,1996,ai_servers,,,,3527,racks_per_month,2
+F00372,C00287,Wenenova Hsinchu Assembly 1,server_assembly,Hsinchu,TWN,24.8085,121.007,ramping,2025,ai_servers,,,,3739,racks_per_month,3
+F00373,C00287,Wenenova Columbus Assembly 2,server_assembly,Columbus,USA,40.0044,-83.0016,operating,2004,ai_servers,,,,2069,racks_per_month,4
+F00374,C00288,Obrarios Taichung Assembly 1,server_assembly,Taichung,TWN,24.112,120.7073,operating,1995,ai_servers,,,,4614,racks_per_month,8
+F00375,C00288,Obrarios Guadalajara Assembly 2,server_assembly,Guadalajara,MEX,20.623,-103.406,operating,2014,ai_servers,,,,8401,racks_per_month,7
+F00376,C00288,Obrarios Dresden Assembly 3,server_assembly,Dresden,DEU,51.0318,13.7675,operating,2002,ai_servers,,,,7587,racks_per_month,2
+F00377,C00288,Obrarios Ciudad Juarez Assembly 4,server_assembly,Ciudad Juarez,MEX,31.6749,-106.4722,operating,1995,ai_servers,,,,6660,racks_per_month,5
+F00378,C00289,Quineon Guadalajara Assembly 1,server_assembly,Guadalajara,MEX,20.7002,-103.3584,under_construction,2026,ai_servers,,,,996,racks_per_month,4
+F00379,C00289,Quineon Ho Chi Minh City Assembly 2,server_assembly,Ho Chi Minh City,VNM,10.8059,106.6013,under_construction,2026,ai_servers,,,,9271,racks_per_month,5
+F00380,C00289,Quineon Tainan Assembly 3,server_assembly,Tainan,TWN,23.0336,120.1501,operating,2009,ai_servers,,,,2531,racks_per_month,4
+F00381,C00290,Lorenium Shanghai Assembly 1,server_assembly,Shanghai,CHN,31.1994,121.4107,operating,1996,ai_servers,,,,4330,racks_per_month,6
+F00382,C00290,Lorenium Guadalajara Assembly 2,server_assembly,Guadalajara,MEX,20.6395,-103.3804,under_construction,2026,ai_servers,,,,2606,racks_per_month,3
+F00383,C00290,Lorenium Taichung Assembly 3,server_assembly,Taichung,TWN,24.1088,120.6215,operating,2002,ai_servers,,,,5064,racks_per_month,7
+F00384,C00290,Lorenium Hefei Assembly 4,server_assembly,Hefei,CHN,31.848,117.2666,operating,2021,ai_servers,,,,3755,racks_per_month,7
+F00385,C00291,Xaneark Taichung Assembly 1,server_assembly,Taichung,TWN,24.0952,120.6105,under_construction,2027,ai_servers,,,,6961,racks_per_month,8
+F00386,C00291,Xaneark Kulim Assembly 2,server_assembly,Kulim,MYS,5.417,100.5783,operating,2016,ai_servers,,,,602,racks_per_month,6
+F00387,C00292,Lunirora Dallas Assembly 1,server_assembly,Dallas,USA,32.7671,-96.8086,operating,2001,ai_servers,,,,7300,racks_per_month,4
+F00388,C00292,Lunirora Dallas Assembly 2,server_assembly,Dallas,USA,32.7244,-96.7967,ramping,2025,ai_servers,,,,2782,racks_per_month,2
+F00389,C00292,Lunirora Monterrey Assembly 3,server_assembly,Monterrey,MEX,25.6615,-100.3053,operating,1996,ai_servers,,,,10604,racks_per_month,3
+F00390,C00293,Norarova Taichung Assembly 1,server_assembly,Taichung,TWN,24.1399,120.7046,operating,2023,ai_servers,,,,1094,racks_per_month,5
+F00391,C00293,Norarova Munich Assembly 2,server_assembly,Munich,DEU,48.1023,11.5377,operating,2011,ai_servers,,,,3834,racks_per_month,8
+F00392,C00293,Norarova Guadalajara Assembly 3,server_assembly,Guadalajara,MEX,20.6039,-103.32,operating,2013,ai_servers,,,,3675,racks_per_month,3
+F00393,C00294,Ararux Ciudad Juarez Assembly 1,server_assembly,Ciudad Juarez,MEX,31.6535,-106.4276,operating,2021,ai_servers,,,,1037,racks_per_month,3
+F00394,C00294,Ararux Regensburg Assembly 2,server_assembly,Regensburg,DEU,49.0083,12.0774,operating,1998,ai_servers,,,,10942,racks_per_month,8
+F00395,C00294,Ararux Ciudad Juarez Assembly 3,server_assembly,Ciudad Juarez,MEX,31.6571,-106.4378,operating,2013,ai_servers,,,,1479,racks_per_month,7
+F00396,C00295,Joranys Chonburi Assembly 1,server_assembly,Chonburi,THA,13.3213,100.9245,operating,1999,ai_servers,,,,3440,racks_per_month,8
+F00397,C00295,Joranys Ciudad Juarez Assembly 2,server_assembly,Ciudad Juarez,MEX,31.6754,-106.38,operating,2012,ai_servers,,,,4606,racks_per_month,4
+F00398,C00296,Selaell Monterrey Assembly 1,server_assembly,Monterrey,MEX,25.6433,-100.3221,operating,2013,ai_servers,,,,2091,racks_per_month,6
+F00399,C00296,Selaell Guadalajara Assembly 2,server_assembly,Guadalajara,MEX,20.6544,-103.3094,operating,1999,ai_servers,,,,2441,racks_per_month,2
+F00400,C00296,Selaell Phoenix Assembly 3,server_assembly,Phoenix,USA,33.4612,-112.1269,operating,2001,ai_servers,,,,2917,racks_per_month,6
+F00401,C00296,Selaell Ciudad Juarez Assembly 4,server_assembly,Ciudad Juarez,MEX,31.6371,-106.3876,operating,2016,ai_servers,,,,11967,racks_per_month,7
+F00402,C00297,Thaliova Regensburg Assembly 1,server_assembly,Regensburg,DEU,49.0662,12.0801,ramping,2025,ai_servers,,,,10349,racks_per_month,8
+F00403,C00298,Ithuyn Taoyuan Assembly 1,server_assembly,Taoyuan,TWN,25.0255,121.3365,operating,2017,ai_servers,,,,9894,racks_per_month,3
+F00404,C00298,Ithuyn Jena Assembly 2,server_assembly,Jena,DEU,50.8894,11.6167,operating,2010,ai_servers,,,,10259,racks_per_month,2
+F00405,C00298,Ithuyn Ciudad Juarez Assembly 3,server_assembly,Ciudad Juarez,MEX,31.6488,-106.3785,under_construction,2026,ai_servers,,,,616,racks_per_month,5
+F00406,C00298,Ithuyn Singapore Assembly 4,server_assembly,Singapore,SGP,1.3748,103.8186,operating,2023,ai_servers,,,,8972,racks_per_month,8
+F00407,C00299,Rynanys Bac Ninh Assembly 1,server_assembly,Bac Ninh,VNM,21.1521,106.1216,operating,2002,ai_servers,,,,5680,racks_per_month,5
+F00408,C00299,Rynanys Guadalajara Assembly 2,server_assembly,Guadalajara,MEX,20.6563,-103.3204,operating,2009,ai_servers,,,,4375,racks_per_month,5
+F00409,C00300,Kaveora Ciudad Juarez Assembly 1,server_assembly,Ciudad Juarez,MEX,31.7387,-106.3743,operating,2020,ai_servers,,,,7836,racks_per_month,8

@@ -1,0 +1,5 @@
+market_id,name,description
+M1,hyperscale_cloud,Large public cloud and AI platform operators
+M2,enterprise_ai,Enterprises running AI in their own data centres
+M3,sovereign_ai,Government-backed national AI compute programmes
+M4,edge_ai,AI inference at the network edge and on premises

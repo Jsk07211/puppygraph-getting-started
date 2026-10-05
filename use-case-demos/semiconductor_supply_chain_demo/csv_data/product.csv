@@ -1,0 +1,23 @@
+hs_code,description,stage
+280461,Silicon: containing by weight not less than 99.99% of silicon,material
+381800,"Chemical elements: doped for use in electronics, in the form of discs, wafers or similar forms: chemical compounds doped for use in electronics",material
+847150,"Units of automatic data processing machines: processing units other than those of item no. 8471.41 or 8471.49, whether or not containing in the same housing one or two of the following types of unit: storage units, input units or output units",server
+847330,"Machinery: parts and accessories (other than covers, carrying cases and the like) of the machines of heading no. 8471",server
+848610,Machines and apparatus of a kind used solely or principally for the manufacture of semiconductor boules or wafers,equipment
+848620,Machines and apparatus of a kind used solely or principally for the manufacture of semiconductor devices or of electronic integrated circuits,equipment
+848630,Machines and apparatus of a kind used solely or principally for the manufacture of flat panel displays,equipment
+848640,"Machines and apparatus of a kind used solely or principally for the manufacture or repair of masks and reticles, assembling semiconductor devices or electronic integrated circuits, or for lifting, handling, loading or unloading items of heading 8486",equipment
+848690,Machines and apparatus of heading 8486: parts and accessories,equipment
+854110,"Electrical apparatus: diodes, other than photosensitive or light-emitting diodes (LED)",chip
+854121,"Electrical apparatus: transistors, (other than photosensitive), with a dissipation rate of less than 1W",chip
+854129,"Electrical apparatus: transistors, (other than photosensitive), with a dissipation rate of 1W or more",chip
+854130,"Electrical apparatus: thyristors, diacs and triacs, other than photosensitive devices",chip
+854140,"Electrical apparatus: photosensitive, including photovoltaic cells, whether or not assembled in modules or made up into panels, light-emitting diodes (LED)",chip
+854150,"Electrical apparatus: photosensitive semiconductor devices n.e.c. in heading no. 8541, including photovoltaic cells, whether or not assembled in modules or made up into panels",chip
+854160,Crystals: mounted piezo-electric,chip
+854190,"Electrical apparatus: parts for diodes, transistors and similar semiconductor devices and photosensitive semiconductor devices",chip
+854231,"Electronic integrated circuits: processors and controllers, whether or not combined with memories, converters, logic circuits, amplifiers, clock and timing circuits, or other circuits",chip
+854232,Electronic integrated circuits: memories,chip
+854233,Electronic integrated circuits: amplifiers,chip
+854239,Electronic integrated circuits: n.e.c. in heading no. 8542,chip
+854290,Parts of electronic integrated circuits,chip

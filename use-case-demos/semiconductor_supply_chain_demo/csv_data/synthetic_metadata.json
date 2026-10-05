@@ -1,0 +1,29 @@
+{
+ "generator_version": "1.0.0",
+ "seed": 42,
+ "scale": "small",
+ "calibration_year": 2024,
+ "company_names_screened_at": "2026-10-05T04:59:30Z",
+ "row_counts": {
+  "synthetic_alt_facility": 353,
+  "synthetic_alt_supplier": 423,
+  "synthetic_assembly": 252,
+  "synthetic_bom_line": 965,
+  "synthetic_chip_part": 477,
+  "synthetic_company": 300,
+  "synthetic_disruption_event": 7,
+  "synthetic_end_market": 4,
+  "synthetic_end_product": 183,
+  "synthetic_event_country": 9,
+  "synthetic_event_impact": 98,
+  "synthetic_fabrication": 799,
+  "synthetic_facility": 409,
+  "synthetic_facility_capacity": 3681,
+  "synthetic_license": 200,
+  "synthetic_packaging": 621,
+  "synthetic_part_component": 294,
+  "synthetic_restriction": 5,
+  "synthetic_sales": 489,
+  "synthetic_supply": 2471
+ }
+}

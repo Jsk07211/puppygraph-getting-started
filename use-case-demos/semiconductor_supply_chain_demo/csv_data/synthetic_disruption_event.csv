@@ -1,0 +1,8 @@
+event_id,name,event_type,scenario_note,start_date,severity,latitude,longitude,radius_km,hs_code
+V001,Hypothetical earthquake near Hsinchu,earthquake,Hypothetical scenario for illustration; not a forecast.,2025-03-10,4,24.7,121.1,90.0,
+V002,Hypothetical earthquake near Kumamoto,earthquake,Hypothetical scenario for illustration; not a forecast.,2025-06-02,3,32.8,130.75,60.0,
+V003,Hypothetical grid failure in Gyeonggi,power_outage,Hypothetical scenario for illustration; not a forecast.,2025-08-18,2,37.15,127.15,40.0,
+V004,Hypothetical flood around Bangkok,flood,Hypothetical scenario for illustration; not a forecast.,2025-10-06,3,13.7,100.6,80.0,
+V005,Hypothetical typhoon in Southern Taiwan,typhoon,Hypothetical scenario for illustration; not a forecast.,2025-09-01,2,22.8,120.3,70.0,
+V006,Hypothetical export control on wafer fab equipment to China,export_control,Hypothetical scenario for illustration; not a forecast.,2025-04-01,4,,,,848620
+V007,Hypothetical export control on lithography tools to China,export_control,Hypothetical scenario for illustration; not a forecast.,2025-05-01,4,,,,848620
