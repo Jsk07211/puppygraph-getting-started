@@ -1,1199 +1,1819 @@
 {
-  "catalogs": [
+  "catalog": [
     {
-      "name": "iceberg",
+      "name": "iceberg_test",
       "type": "iceberg",
       "metastore": {
         "type": "rest",
-        "uri": "http://iceberg-rest:8181"
+        "uri": "http://iceberg-rest:8181",
+        "authType": "noAuth"
       },
       "storage": {
         "useInstanceProfile": "false",
         "accessKey": "admin",
         "secretKey": "password",
         "enableSsl": "false",
-        "endpoint": "http://minio:9000",
+        "endpoint": "http://rustfs:9000",
         "enablePathStyleAccess": "true",
-        "type": "S3"
+        "type": "S3",
+        "useDefaultCredentialsProviderChain": "false"
+      },
+      "metadataCache": {
+        "enabled": "true",
+        "tableMetadata": {
+          "enabled": "true"
+        }
       }
     }
   ],
-  "graph": {
-    "vertices": [
-      {
-        "label": "Country",
-        "oneToOne": {
-          "tableSource": {
-            "catalog": "iceberg",
-            "schema": "ai_chip_supply_chain",
-            "table": "country"
-          },
-          "id": {
-            "fields": [
-              {
-                "type": "String",
-                "field": "iso3",
-                "alias": "iso3"
-              }
-            ]
-          },
-          "attributes": [
+  "node": [
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
+          "schema": "ai_chip_supply_chain",
+          "table": "country",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "iso2",
-              "alias": "iso2"
+              "sourceFieldName": "iso3",
+              "targetFieldName": "iso3"
             },
             {
-              "type": "String",
-              "field": "name",
-              "alias": "name"
+              "sourceFieldName": "iso2",
+              "targetFieldName": "iso2"
+            },
+            {
+              "sourceFieldName": "name",
+              "targetFieldName": "name"
             }
           ]
         }
       },
-      {
-        "label": "Company",
-        "oneToOne": {
-          "tableSource": {
-            "catalog": "iceberg",
-            "schema": "ai_chip_supply_chain",
-            "table": "synthetic_company"
-          },
-          "id": {
-            "fields": [
-              {
-                "type": "String",
-                "field": "company_id",
-                "alias": "company_id"
-              }
-            ]
-          },
-          "attributes": [
+      "label": "Country",
+      "id": [
+        {
+          "name": "iso3",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "iso2",
+          "type": "String"
+        },
+        {
+          "name": "name",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
+          "schema": "ai_chip_supply_chain",
+          "table": "synthetic_company",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "name",
-              "alias": "name"
+              "sourceFieldName": "company_id",
+              "targetFieldName": "company_id"
             },
             {
-              "type": "String",
-              "field": "role",
-              "alias": "role"
+              "sourceFieldName": "name",
+              "targetFieldName": "name"
             },
             {
-              "type": "String",
-              "field": "subtype",
-              "alias": "subtype"
+              "sourceFieldName": "role",
+              "targetFieldName": "role"
             },
             {
-              "type": "String",
-              "field": "hq_country",
-              "alias": "hq_country"
+              "sourceFieldName": "subtype",
+              "targetFieldName": "subtype"
             },
             {
-              "type": "String",
-              "field": "ownership",
-              "alias": "ownership"
+              "sourceFieldName": "hq_country",
+              "targetFieldName": "hq_country"
             },
             {
-              "type": "Long",
-              "field": "founded_year",
-              "alias": "founded_year"
+              "sourceFieldName": "ownership",
+              "targetFieldName": "ownership"
             },
             {
-              "type": "Long",
-              "field": "employees",
-              "alias": "employees"
+              "sourceFieldName": "founded_year",
+              "targetFieldName": "founded_year"
+            },
+            {
+              "sourceFieldName": "employees",
+              "targetFieldName": "employees"
             }
           ]
         }
       },
-      {
-        "label": "Facility",
-        "oneToOne": {
-          "tableSource": {
-            "catalog": "iceberg",
-            "schema": "ai_chip_supply_chain",
-            "table": "synthetic_facility"
-          },
-          "id": {
-            "fields": [
-              {
-                "type": "String",
-                "field": "facility_id",
-                "alias": "facility_id"
-              }
-            ]
-          },
-          "attributes": [
+      "label": "Company",
+      "id": [
+        {
+          "name": "company_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "name",
+          "type": "String"
+        },
+        {
+          "name": "role",
+          "type": "String"
+        },
+        {
+          "name": "subtype",
+          "type": "String"
+        },
+        {
+          "name": "hq_country",
+          "type": "String"
+        },
+        {
+          "name": "ownership",
+          "type": "String"
+        },
+        {
+          "name": "founded_year",
+          "type": "Int"
+        },
+        {
+          "name": "employees",
+          "type": "Int"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
+          "schema": "ai_chip_supply_chain",
+          "table": "synthetic_facility",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "company_id",
-              "alias": "company_id"
+              "sourceFieldName": "facility_id",
+              "targetFieldName": "facility_id"
             },
             {
-              "type": "String",
-              "field": "name",
-              "alias": "name"
+              "sourceFieldName": "company_id",
+              "targetFieldName": "company_id"
             },
             {
-              "type": "String",
-              "field": "facility_type",
-              "alias": "facility_type"
+              "sourceFieldName": "name",
+              "targetFieldName": "name"
             },
             {
-              "type": "String",
-              "field": "city",
-              "alias": "city"
+              "sourceFieldName": "facility_type",
+              "targetFieldName": "facility_type"
             },
             {
-              "type": "String",
-              "field": "country",
-              "alias": "country"
+              "sourceFieldName": "city",
+              "targetFieldName": "city"
             },
             {
-              "type": "Double",
-              "field": "latitude",
-              "alias": "latitude"
+              "sourceFieldName": "country",
+              "targetFieldName": "country"
             },
             {
-              "type": "Double",
-              "field": "longitude",
-              "alias": "longitude"
+              "sourceFieldName": "latitude",
+              "targetFieldName": "latitude"
             },
             {
-              "type": "String",
-              "field": "status",
-              "alias": "status"
+              "sourceFieldName": "longitude",
+              "targetFieldName": "longitude"
             },
             {
-              "type": "Long",
-              "field": "hvm_start_year",
-              "alias": "hvm_start_year"
+              "sourceFieldName": "status",
+              "targetFieldName": "status"
             },
             {
-              "type": "String",
-              "field": "domain",
-              "alias": "domain"
+              "sourceFieldName": "hvm_start_year",
+              "targetFieldName": "hvm_start_year"
             },
             {
-              "type": "String",
-              "field": "process_node",
-              "alias": "process_node"
+              "sourceFieldName": "domain",
+              "targetFieldName": "domain"
             },
             {
-              "type": "Double",
-              "field": "process_node_nm",
-              "alias": "process_node_nm"
+              "sourceFieldName": "process_node",
+              "targetFieldName": "process_node"
             },
             {
-              "type": "Double",
-              "field": "wafer_size_mm",
-              "alias": "wafer_size_mm"
+              "sourceFieldName": "process_node_nm",
+              "targetFieldName": "process_node_nm"
             },
             {
-              "type": "Long",
-              "field": "capacity",
-              "alias": "capacity"
+              "sourceFieldName": "wafer_size_mm",
+              "targetFieldName": "wafer_size_mm"
             },
             {
-              "type": "String",
-              "field": "capacity_unit",
-              "alias": "capacity_unit"
+              "sourceFieldName": "capacity",
+              "targetFieldName": "capacity"
             },
             {
-              "type": "Long",
-              "field": "time_to_recover_weeks",
-              "alias": "time_to_recover_weeks"
+              "sourceFieldName": "capacity_unit",
+              "targetFieldName": "capacity_unit"
+            },
+            {
+              "sourceFieldName": "time_to_recover_weeks",
+              "targetFieldName": "time_to_recover_weeks"
             }
           ]
         }
       },
-      {
-        "label": "Part",
-        "oneToOne": {
-          "tableSource": {
-            "catalog": "iceberg",
-            "schema": "ai_chip_supply_chain",
-            "table": "synthetic_chip_part"
-          },
-          "id": {
-            "fields": [
-              {
-                "type": "String",
-                "field": "part_id",
-                "alias": "part_id"
-              }
-            ]
-          },
-          "attributes": [
+      "label": "Facility",
+      "id": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "company_id",
+          "type": "String"
+        },
+        {
+          "name": "name",
+          "type": "String"
+        },
+        {
+          "name": "facility_type",
+          "type": "String"
+        },
+        {
+          "name": "city",
+          "type": "String"
+        },
+        {
+          "name": "country",
+          "type": "String"
+        },
+        {
+          "name": "latitude",
+          "type": "Double"
+        },
+        {
+          "name": "longitude",
+          "type": "Double"
+        },
+        {
+          "name": "status",
+          "type": "String"
+        },
+        {
+          "name": "hvm_start_year",
+          "type": "Int"
+        },
+        {
+          "name": "domain",
+          "type": "String"
+        },
+        {
+          "name": "process_node",
+          "type": "String"
+        },
+        {
+          "name": "process_node_nm",
+          "type": "Double"
+        },
+        {
+          "name": "wafer_size_mm",
+          "type": "Int"
+        },
+        {
+          "name": "capacity",
+          "type": "Long"
+        },
+        {
+          "name": "capacity_unit",
+          "type": "String"
+        },
+        {
+          "name": "time_to_recover_weeks",
+          "type": "Int"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
+          "schema": "ai_chip_supply_chain",
+          "table": "synthetic_chip_part",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "part_number",
-              "alias": "part_number"
+              "sourceFieldName": "part_id",
+              "targetFieldName": "part_id"
             },
             {
-              "type": "String",
-              "field": "part_type",
-              "alias": "part_type"
+              "sourceFieldName": "part_number",
+              "targetFieldName": "part_number"
             },
             {
-              "type": "String",
-              "field": "designer_company_id",
-              "alias": "designer_company_id"
+              "sourceFieldName": "part_type",
+              "targetFieldName": "part_type"
             },
             {
-              "type": "String",
-              "field": "hs_code",
-              "alias": "hs_code"
+              "sourceFieldName": "designer_company_id",
+              "targetFieldName": "designer_company_id"
             },
             {
-              "type": "Double",
-              "field": "process_node_nm",
-              "alias": "process_node_nm"
+              "sourceFieldName": "hs_code",
+              "targetFieldName": "hs_code"
             },
             {
-              "type": "Double",
-              "field": "unit_price_usd",
-              "alias": "unit_price_usd"
+              "sourceFieldName": "process_node_nm",
+              "targetFieldName": "process_node_nm"
+            },
+            {
+              "sourceFieldName": "unit_price_usd",
+              "targetFieldName": "unit_price_usd"
             }
           ]
         }
       },
-      {
-        "label": "Server",
-        "oneToOne": {
-          "tableSource": {
-            "catalog": "iceberg",
-            "schema": "ai_chip_supply_chain",
-            "table": "synthetic_end_product"
-          },
-          "id": {
-            "fields": [
-              {
-                "type": "String",
-                "field": "product_id",
-                "alias": "product_id"
-              }
-            ]
-          },
-          "attributes": [
+      "label": "Part",
+      "id": [
+        {
+          "name": "part_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "part_number",
+          "type": "String"
+        },
+        {
+          "name": "part_type",
+          "type": "String"
+        },
+        {
+          "name": "designer_company_id",
+          "type": "String"
+        },
+        {
+          "name": "hs_code",
+          "type": "String"
+        },
+        {
+          "name": "process_node_nm",
+          "type": "Double"
+        },
+        {
+          "name": "unit_price_usd",
+          "type": "Double"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
+          "schema": "ai_chip_supply_chain",
+          "table": "synthetic_end_product",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "maker_company_id",
-              "alias": "maker_company_id"
+              "sourceFieldName": "product_id",
+              "targetFieldName": "product_id"
             },
             {
-              "type": "String",
-              "field": "name",
-              "alias": "name"
+              "sourceFieldName": "maker_company_id",
+              "targetFieldName": "maker_company_id"
             },
             {
-              "type": "String",
-              "field": "product_type",
-              "alias": "product_type"
+              "sourceFieldName": "name",
+              "targetFieldName": "name"
             },
             {
-              "type": "String",
-              "field": "hs_code",
-              "alias": "hs_code"
+              "sourceFieldName": "product_type",
+              "targetFieldName": "product_type"
             },
             {
-              "type": "Double",
-              "field": "unit_price_usd",
-              "alias": "unit_price_usd"
+              "sourceFieldName": "hs_code",
+              "targetFieldName": "hs_code"
             },
             {
-              "type": "Long",
-              "field": "annual_units",
-              "alias": "annual_units"
+              "sourceFieldName": "unit_price_usd",
+              "targetFieldName": "unit_price_usd"
             },
             {
-              "type": "Long",
-              "field": "annual_revenue_usd",
-              "alias": "annual_revenue_usd"
+              "sourceFieldName": "annual_units",
+              "targetFieldName": "annual_units"
+            },
+            {
+              "sourceFieldName": "annual_revenue_usd",
+              "targetFieldName": "annual_revenue_usd"
             }
           ]
         }
       },
-      {
-        "label": "Market",
-        "oneToOne": {
-          "tableSource": {
-            "catalog": "iceberg",
-            "schema": "ai_chip_supply_chain",
-            "table": "synthetic_end_market"
-          },
-          "id": {
-            "fields": [
-              {
-                "type": "String",
-                "field": "market_id",
-                "alias": "market_id"
-              }
-            ]
-          },
-          "attributes": [
+      "label": "Server",
+      "id": [
+        {
+          "name": "product_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "maker_company_id",
+          "type": "String"
+        },
+        {
+          "name": "name",
+          "type": "String"
+        },
+        {
+          "name": "product_type",
+          "type": "String"
+        },
+        {
+          "name": "hs_code",
+          "type": "String"
+        },
+        {
+          "name": "unit_price_usd",
+          "type": "Double"
+        },
+        {
+          "name": "annual_units",
+          "type": "Int"
+        },
+        {
+          "name": "annual_revenue_usd",
+          "type": "Long"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
+          "schema": "ai_chip_supply_chain",
+          "table": "synthetic_end_market",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "name",
-              "alias": "name"
+              "sourceFieldName": "market_id",
+              "targetFieldName": "market_id"
             },
             {
-              "type": "String",
-              "field": "description",
-              "alias": "description"
+              "sourceFieldName": "name",
+              "targetFieldName": "name"
+            },
+            {
+              "sourceFieldName": "description",
+              "targetFieldName": "description"
             }
           ]
         }
       },
-      {
-        "label": "Event",
-        "oneToOne": {
-          "tableSource": {
-            "catalog": "iceberg",
-            "schema": "ai_chip_supply_chain",
-            "table": "synthetic_disruption_event"
-          },
-          "id": {
-            "fields": [
-              {
-                "type": "String",
-                "field": "event_id",
-                "alias": "event_id"
-              }
-            ]
-          },
-          "attributes": [
+      "label": "Market",
+      "id": [
+        {
+          "name": "market_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "name",
+          "type": "String"
+        },
+        {
+          "name": "description",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
+          "schema": "ai_chip_supply_chain",
+          "table": "synthetic_disruption_event",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "name",
-              "alias": "name"
+              "sourceFieldName": "event_id",
+              "targetFieldName": "event_id"
             },
             {
-              "type": "String",
-              "field": "event_type",
-              "alias": "event_type"
+              "sourceFieldName": "name",
+              "targetFieldName": "name"
             },
             {
-              "type": "String",
-              "field": "scenario_note",
-              "alias": "scenario_note"
+              "sourceFieldName": "event_type",
+              "targetFieldName": "event_type"
             },
             {
-              "type": "Date",
-              "field": "start_date",
-              "alias": "start_date"
+              "sourceFieldName": "scenario_note",
+              "targetFieldName": "scenario_note"
             },
             {
-              "type": "Long",
-              "field": "severity",
-              "alias": "severity"
+              "sourceFieldName": "start_date",
+              "targetFieldName": "start_date"
             },
             {
-              "type": "Double",
-              "field": "latitude",
-              "alias": "latitude"
+              "sourceFieldName": "severity",
+              "targetFieldName": "severity"
             },
             {
-              "type": "Double",
-              "field": "longitude",
-              "alias": "longitude"
+              "sourceFieldName": "latitude",
+              "targetFieldName": "latitude"
             },
             {
-              "type": "Double",
-              "field": "radius_km",
-              "alias": "radius_km"
+              "sourceFieldName": "longitude",
+              "targetFieldName": "longitude"
             },
             {
-              "type": "String",
-              "field": "hs_code",
-              "alias": "hs_code"
+              "sourceFieldName": "radius_km",
+              "targetFieldName": "radius_km"
+            },
+            {
+              "sourceFieldName": "hs_code",
+              "targetFieldName": "hs_code"
             }
           ]
         }
-      }
-    ],
-    "edges": [
-      {
-        "label": "TRADES",
-        "fromVertex": "Country",
-        "toVertex": "Country",
-        "tableSource": {
-          "catalog": "iceberg",
-          "schema": "ai_chip_supply_chain",
-          "table": "trade_flow"
-        },
-        "fromId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "exporter",
-              "alias": "from_exporter"
-            }
-          ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "importer",
-              "alias": "to_importer"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "Long",
-            "field": "year",
-            "alias": "year"
-          },
-          {
-            "type": "String",
-            "field": "hs_code",
-            "alias": "hs_code"
-          },
-          {
-            "type": "Long",
-            "field": "value_usd",
-            "alias": "value_usd"
-          },
-          {
-            "type": "Double",
-            "field": "quantity_tonnes",
-            "alias": "quantity_tonnes"
-          }
-        ]
       },
-      {
-        "label": "HQ_IN",
-        "fromVertex": "Company",
-        "toVertex": "Country",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "Event",
+      "id": [
+        {
+          "name": "event_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "name",
+          "type": "String"
+        },
+        {
+          "name": "event_type",
+          "type": "String"
+        },
+        {
+          "name": "scenario_note",
+          "type": "String"
+        },
+        {
+          "name": "start_date",
+          "type": "Date"
+        },
+        {
+          "name": "severity",
+          "type": "Int"
+        },
+        {
+          "name": "latitude",
+          "type": "Double"
+        },
+        {
+          "name": "longitude",
+          "type": "Double"
+        },
+        {
+          "name": "radius_km",
+          "type": "Double"
+        },
+        {
+          "name": "hs_code",
+          "type": "String"
+        }
+      ]
+    }
+  ],
+  "edge": [
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_company"
-        },
-        "fromId": {
-          "fields": [
+          "table": "trade_flow",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "company_id",
-              "alias": "from_company_id"
+              "sourceFieldName": "exporter",
+              "targetFieldName": "exporter"
+            },
+            {
+              "sourceFieldName": "importer",
+              "targetFieldName": "importer"
+            },
+            {
+              "sourceFieldName": "year",
+              "targetFieldName": "year"
+            },
+            {
+              "sourceFieldName": "hs_code",
+              "targetFieldName": "hs_code"
+            },
+            {
+              "sourceFieldName": "value_usd",
+              "targetFieldName": "value_usd"
+            },
+            {
+              "sourceFieldName": "quantity_tonnes",
+              "targetFieldName": "quantity_tonnes"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "hq_country",
-              "alias": "to_hq_country"
-            }
-          ]
-        },
-        "attributes": []
+        }
       },
-      {
-        "label": "OPERATES",
-        "fromVertex": "Company",
-        "toVertex": "Facility",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "TRADES",
+      "fromNodeLabel": "Country",
+      "toNodeLabel": "Country",
+      "id": [
+        {
+          "name": "year",
+          "type": "Int"
+        },
+        {
+          "name": "exporter",
+          "type": "String"
+        },
+        {
+          "name": "importer",
+          "type": "String"
+        },
+        {
+          "name": "hs_code",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "exporter",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "importer",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "year",
+          "type": "Int"
+        },
+        {
+          "name": "hs_code",
+          "type": "String"
+        },
+        {
+          "name": "value_usd",
+          "type": "Long"
+        },
+        {
+          "name": "quantity_tonnes",
+          "type": "Double"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_facility"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_company",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "company_id",
-              "alias": "from_company_id"
+              "sourceFieldName": "company_id",
+              "targetFieldName": "company_id"
+            },
+            {
+              "sourceFieldName": "hq_country",
+              "targetFieldName": "hq_country"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "facility_id",
-              "alias": "to_facility_id"
-            }
-          ]
-        },
-        "attributes": []
+        }
       },
-      {
-        "label": "LOCATED_IN",
-        "fromVertex": "Facility",
-        "toVertex": "Country",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "HQ_IN",
+      "fromNodeLabel": "Company",
+      "toNodeLabel": "Country",
+      "id": [
+        {
+          "name": "company_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "company_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "hq_country",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_facility"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_facility",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "facility_id",
-              "alias": "from_facility_id"
+              "sourceFieldName": "company_id",
+              "targetFieldName": "company_id"
+            },
+            {
+              "sourceFieldName": "facility_id",
+              "targetFieldName": "facility_id"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "country",
-              "alias": "to_country"
-            }
-          ]
-        },
-        "attributes": []
+        }
       },
-      {
-        "label": "SUPPLIES",
-        "fromVertex": "Company",
-        "toVertex": "Facility",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "OPERATES",
+      "fromNodeLabel": "Company",
+      "toNodeLabel": "Facility",
+      "id": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "company_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_supply"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_facility",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "supplier_company_id",
-              "alias": "from_supplier_company_id"
+              "sourceFieldName": "facility_id",
+              "targetFieldName": "facility_id"
+            },
+            {
+              "sourceFieldName": "country",
+              "targetFieldName": "country"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "facility_id",
-              "alias": "to_facility_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "String",
-            "field": "supply_id",
-            "alias": "supply_id"
-          },
-          {
-            "type": "String",
-            "field": "supply_category",
-            "alias": "supply_category"
-          },
-          {
-            "type": "String",
-            "field": "hs_code",
-            "alias": "hs_code"
-          },
-          {
-            "type": "Long",
-            "field": "annual_value_usd",
-            "alias": "annual_value_usd"
-          },
-          {
-            "type": "Double",
-            "field": "share_of_need_pct",
-            "alias": "share_of_need_pct"
-          },
-          {
-            "type": "Long",
-            "field": "lead_time_weeks",
-            "alias": "lead_time_weeks"
-          },
-          {
-            "type": "Long",
-            "field": "inventory_weeks_on_hand",
-            "alias": "inventory_weeks_on_hand"
-          },
-          {
-            "type": "Date",
-            "field": "contract_start",
-            "alias": "contract_start"
-          },
-          {
-            "type": "Date",
-            "field": "contract_end",
-            "alias": "contract_end"
-          }
-        ]
+        }
       },
-      {
-        "label": "ALT_SUPPLIER_FOR",
-        "fromVertex": "Company",
-        "toVertex": "Facility",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "LOCATED_IN",
+      "fromNodeLabel": "Facility",
+      "toNodeLabel": "Country",
+      "id": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "country",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_alt_supplier"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_supply",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "supplier_company_id",
-              "alias": "from_supplier_company_id"
+              "sourceFieldName": "supplier_company_id",
+              "targetFieldName": "supplier_company_id"
+            },
+            {
+              "sourceFieldName": "facility_id",
+              "targetFieldName": "facility_id"
+            },
+            {
+              "sourceFieldName": "supply_id",
+              "targetFieldName": "supply_id"
+            },
+            {
+              "sourceFieldName": "supply_category",
+              "targetFieldName": "supply_category"
+            },
+            {
+              "sourceFieldName": "hs_code",
+              "targetFieldName": "hs_code"
+            },
+            {
+              "sourceFieldName": "annual_value_usd",
+              "targetFieldName": "annual_value_usd"
+            },
+            {
+              "sourceFieldName": "share_of_need_pct",
+              "targetFieldName": "share_of_need_pct"
+            },
+            {
+              "sourceFieldName": "lead_time_weeks",
+              "targetFieldName": "lead_time_weeks"
+            },
+            {
+              "sourceFieldName": "inventory_weeks_on_hand",
+              "targetFieldName": "inventory_weeks_on_hand"
+            },
+            {
+              "sourceFieldName": "contract_start",
+              "targetFieldName": "contract_start"
+            },
+            {
+              "sourceFieldName": "contract_end",
+              "targetFieldName": "contract_end"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "facility_id",
-              "alias": "to_facility_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "String",
-            "field": "supply_category",
-            "alias": "supply_category"
-          },
-          {
-            "type": "Long",
-            "field": "qualification_months",
-            "alias": "qualification_months"
-          },
-          {
-            "type": "Double",
-            "field": "spare_capacity_pct",
-            "alias": "spare_capacity_pct"
-          }
-        ]
+        }
       },
-      {
-        "label": "FABRICATES",
-        "fromVertex": "Facility",
-        "toVertex": "Part",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "SUPPLIES",
+      "fromNodeLabel": "Company",
+      "toNodeLabel": "Facility",
+      "id": [
+        {
+          "name": "supply_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "supplier_company_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "supply_id",
+          "type": "String"
+        },
+        {
+          "name": "supply_category",
+          "type": "String"
+        },
+        {
+          "name": "hs_code",
+          "type": "String"
+        },
+        {
+          "name": "annual_value_usd",
+          "type": "Long"
+        },
+        {
+          "name": "share_of_need_pct",
+          "type": "Double"
+        },
+        {
+          "name": "lead_time_weeks",
+          "type": "Int"
+        },
+        {
+          "name": "inventory_weeks_on_hand",
+          "type": "Int"
+        },
+        {
+          "name": "contract_start",
+          "type": "Date"
+        },
+        {
+          "name": "contract_end",
+          "type": "Date"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_fabrication"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_alt_supplier",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "facility_id",
-              "alias": "from_facility_id"
+              "sourceFieldName": "supplier_company_id",
+              "targetFieldName": "supplier_company_id"
+            },
+            {
+              "sourceFieldName": "facility_id",
+              "targetFieldName": "facility_id"
+            },
+            {
+              "sourceFieldName": "supply_category",
+              "targetFieldName": "supply_category"
+            },
+            {
+              "sourceFieldName": "qualification_months",
+              "targetFieldName": "qualification_months"
+            },
+            {
+              "sourceFieldName": "spare_capacity_pct",
+              "targetFieldName": "spare_capacity_pct"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "part_id",
-              "alias": "to_part_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "Double",
-            "field": "share_of_part_volume_pct",
-            "alias": "share_of_part_volume_pct"
-          },
-          {
-            "type": "Long",
-            "field": "lead_time_weeks",
-            "alias": "lead_time_weeks"
-          },
-          {
-            "type": "Long",
-            "field": "inventory_weeks_on_hand",
-            "alias": "inventory_weeks_on_hand"
-          },
-          {
-            "type": "Double",
-            "field": "wafers_per_month",
-            "alias": "wafers_per_month"
-          }
-        ]
+        }
       },
-      {
-        "label": "PACKAGES",
-        "fromVertex": "Facility",
-        "toVertex": "Part",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "ALT_SUPPLIER_FOR",
+      "fromNodeLabel": "Company",
+      "toNodeLabel": "Facility",
+      "id": [
+        {
+          "name": "supplier_company_id",
+          "type": "String"
+        },
+        {
+          "name": "facility_id",
+          "type": "String"
+        },
+        {
+          "name": "supply_category",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "supplier_company_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "supply_category",
+          "type": "String"
+        },
+        {
+          "name": "qualification_months",
+          "type": "Int"
+        },
+        {
+          "name": "spare_capacity_pct",
+          "type": "Double"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_packaging"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_fabrication",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "facility_id",
-              "alias": "from_facility_id"
+              "sourceFieldName": "facility_id",
+              "targetFieldName": "facility_id"
+            },
+            {
+              "sourceFieldName": "part_id",
+              "targetFieldName": "part_id"
+            },
+            {
+              "sourceFieldName": "share_of_part_volume_pct",
+              "targetFieldName": "share_of_part_volume_pct"
+            },
+            {
+              "sourceFieldName": "lead_time_weeks",
+              "targetFieldName": "lead_time_weeks"
+            },
+            {
+              "sourceFieldName": "inventory_weeks_on_hand",
+              "targetFieldName": "inventory_weeks_on_hand"
+            },
+            {
+              "sourceFieldName": "wafers_per_month",
+              "targetFieldName": "wafers_per_month"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "part_id",
-              "alias": "to_part_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "Double",
-            "field": "share_of_part_volume_pct",
-            "alias": "share_of_part_volume_pct"
-          },
-          {
-            "type": "Long",
-            "field": "lead_time_weeks",
-            "alias": "lead_time_weeks"
-          },
-          {
-            "type": "Long",
-            "field": "inventory_weeks_on_hand",
-            "alias": "inventory_weeks_on_hand"
-          }
-        ]
+        }
       },
-      {
-        "label": "ALT_FOR",
-        "fromVertex": "Facility",
-        "toVertex": "Part",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "FABRICATES",
+      "fromNodeLabel": "Facility",
+      "toNodeLabel": "Part",
+      "id": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        },
+        {
+          "name": "part_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "part_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "share_of_part_volume_pct",
+          "type": "Double"
+        },
+        {
+          "name": "lead_time_weeks",
+          "type": "Int"
+        },
+        {
+          "name": "inventory_weeks_on_hand",
+          "type": "Int"
+        },
+        {
+          "name": "wafers_per_month",
+          "type": "Int"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_alt_facility"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_packaging",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "facility_id",
-              "alias": "from_facility_id"
+              "sourceFieldName": "facility_id",
+              "targetFieldName": "facility_id"
+            },
+            {
+              "sourceFieldName": "part_id",
+              "targetFieldName": "part_id"
+            },
+            {
+              "sourceFieldName": "share_of_part_volume_pct",
+              "targetFieldName": "share_of_part_volume_pct"
+            },
+            {
+              "sourceFieldName": "lead_time_weeks",
+              "targetFieldName": "lead_time_weeks"
+            },
+            {
+              "sourceFieldName": "inventory_weeks_on_hand",
+              "targetFieldName": "inventory_weeks_on_hand"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "part_id",
-              "alias": "to_part_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "String",
-            "field": "step",
-            "alias": "step"
-          },
-          {
-            "type": "Long",
-            "field": "qualification_months",
-            "alias": "qualification_months"
-          },
-          {
-            "type": "Double",
-            "field": "spare_capacity_pct",
-            "alias": "spare_capacity_pct"
-          }
-        ]
+        }
       },
-      {
-        "label": "DESIGNS",
-        "fromVertex": "Company",
-        "toVertex": "Part",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "PACKAGES",
+      "fromNodeLabel": "Facility",
+      "toNodeLabel": "Part",
+      "id": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        },
+        {
+          "name": "part_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "part_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "share_of_part_volume_pct",
+          "type": "Double"
+        },
+        {
+          "name": "lead_time_weeks",
+          "type": "Int"
+        },
+        {
+          "name": "inventory_weeks_on_hand",
+          "type": "Int"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_chip_part"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_alt_facility",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "designer_company_id",
-              "alias": "from_designer_company_id"
+              "sourceFieldName": "facility_id",
+              "targetFieldName": "facility_id"
+            },
+            {
+              "sourceFieldName": "part_id",
+              "targetFieldName": "part_id"
+            },
+            {
+              "sourceFieldName": "step",
+              "targetFieldName": "step"
+            },
+            {
+              "sourceFieldName": "qualification_months",
+              "targetFieldName": "qualification_months"
+            },
+            {
+              "sourceFieldName": "spare_capacity_pct",
+              "targetFieldName": "spare_capacity_pct"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "part_id",
-              "alias": "to_part_id"
-            }
-          ]
-        },
-        "attributes": []
+        }
       },
-      {
-        "label": "COMPONENT_OF",
-        "fromVertex": "Part",
-        "toVertex": "Part",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "ALT_FOR",
+      "fromNodeLabel": "Facility",
+      "toNodeLabel": "Part",
+      "id": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        },
+        {
+          "name": "part_id",
+          "type": "String"
+        },
+        {
+          "name": "step",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "part_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "step",
+          "type": "String"
+        },
+        {
+          "name": "qualification_months",
+          "type": "Int"
+        },
+        {
+          "name": "spare_capacity_pct",
+          "type": "Double"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_part_component"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_chip_part",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "component_part_id",
-              "alias": "from_component_part_id"
+              "sourceFieldName": "designer_company_id",
+              "targetFieldName": "designer_company_id"
+            },
+            {
+              "sourceFieldName": "part_id",
+              "targetFieldName": "part_id"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "parent_part_id",
-              "alias": "to_parent_part_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "Long",
-            "field": "quantity",
-            "alias": "quantity"
-          }
-        ]
+        }
       },
-      {
-        "label": "USED_IN",
-        "fromVertex": "Part",
-        "toVertex": "Server",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "DESIGNS",
+      "fromNodeLabel": "Company",
+      "toNodeLabel": "Part",
+      "id": [
+        {
+          "name": "part_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "designer_company_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "part_id",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_bom_line"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_part_component",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "part_id",
-              "alias": "from_part_id"
+              "sourceFieldName": "component_part_id",
+              "targetFieldName": "component_part_id"
+            },
+            {
+              "sourceFieldName": "parent_part_id",
+              "targetFieldName": "parent_part_id"
+            },
+            {
+              "sourceFieldName": "quantity",
+              "targetFieldName": "quantity"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "product_id",
-              "alias": "to_product_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "Long",
-            "field": "units_per_product",
-            "alias": "units_per_product"
-          }
-        ]
+        }
       },
-      {
-        "label": "MAKES",
-        "fromVertex": "Company",
-        "toVertex": "Server",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "COMPONENT_OF",
+      "fromNodeLabel": "Part",
+      "toNodeLabel": "Part",
+      "id": [
+        {
+          "name": "component_part_id",
+          "type": "String"
+        },
+        {
+          "name": "parent_part_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "component_part_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "parent_part_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "quantity",
+          "type": "Int"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_end_product"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_bom_line",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "maker_company_id",
-              "alias": "from_maker_company_id"
+              "sourceFieldName": "part_id",
+              "targetFieldName": "part_id"
+            },
+            {
+              "sourceFieldName": "product_id",
+              "targetFieldName": "product_id"
+            },
+            {
+              "sourceFieldName": "units_per_product",
+              "targetFieldName": "units_per_product"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "product_id",
-              "alias": "to_product_id"
-            }
-          ]
-        },
-        "attributes": []
+        }
       },
-      {
-        "label": "ASSEMBLES",
-        "fromVertex": "Facility",
-        "toVertex": "Server",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "USED_IN",
+      "fromNodeLabel": "Part",
+      "toNodeLabel": "Server",
+      "id": [
+        {
+          "name": "part_id",
+          "type": "String"
+        },
+        {
+          "name": "product_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "part_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "product_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "units_per_product",
+          "type": "Int"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_assembly"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_end_product",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "facility_id",
-              "alias": "from_facility_id"
+              "sourceFieldName": "maker_company_id",
+              "targetFieldName": "maker_company_id"
+            },
+            {
+              "sourceFieldName": "product_id",
+              "targetFieldName": "product_id"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "product_id",
-              "alias": "to_product_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "Double",
-            "field": "share_of_product_volume_pct",
-            "alias": "share_of_product_volume_pct"
-          },
-          {
-            "type": "Long",
-            "field": "lead_time_weeks",
-            "alias": "lead_time_weeks"
-          },
-          {
-            "type": "Long",
-            "field": "inventory_weeks_on_hand",
-            "alias": "inventory_weeks_on_hand"
-          }
-        ]
+        }
       },
-      {
-        "label": "SOLD_INTO",
-        "fromVertex": "Server",
-        "toVertex": "Market",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "MAKES",
+      "fromNodeLabel": "Company",
+      "toNodeLabel": "Server",
+      "id": [
+        {
+          "name": "product_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "maker_company_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "product_id",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_sales"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_assembly",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "product_id",
-              "alias": "from_product_id"
+              "sourceFieldName": "facility_id",
+              "targetFieldName": "facility_id"
+            },
+            {
+              "sourceFieldName": "product_id",
+              "targetFieldName": "product_id"
+            },
+            {
+              "sourceFieldName": "share_of_product_volume_pct",
+              "targetFieldName": "share_of_product_volume_pct"
+            },
+            {
+              "sourceFieldName": "lead_time_weeks",
+              "targetFieldName": "lead_time_weeks"
+            },
+            {
+              "sourceFieldName": "inventory_weeks_on_hand",
+              "targetFieldName": "inventory_weeks_on_hand"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "market_id",
-              "alias": "to_market_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "Long",
-            "field": "revenue_usd",
-            "alias": "revenue_usd"
-          }
-        ]
+        }
       },
-      {
-        "label": "LICENSES_TO",
-        "fromVertex": "Company",
-        "toVertex": "Company",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "ASSEMBLES",
+      "fromNodeLabel": "Facility",
+      "toNodeLabel": "Server",
+      "id": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        },
+        {
+          "name": "product_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "product_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "share_of_product_volume_pct",
+          "type": "Double"
+        },
+        {
+          "name": "lead_time_weeks",
+          "type": "Int"
+        },
+        {
+          "name": "inventory_weeks_on_hand",
+          "type": "Int"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_license"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_sales",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "vendor_company_id",
-              "alias": "from_vendor_company_id"
+              "sourceFieldName": "product_id",
+              "targetFieldName": "product_id"
+            },
+            {
+              "sourceFieldName": "market_id",
+              "targetFieldName": "market_id"
+            },
+            {
+              "sourceFieldName": "revenue_usd",
+              "targetFieldName": "revenue_usd"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "licensee_company_id",
-              "alias": "to_licensee_company_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "String",
-            "field": "license_type",
-            "alias": "license_type"
-          },
-          {
-            "type": "Long",
-            "field": "annual_fee_usd",
-            "alias": "annual_fee_usd"
-          }
-        ]
+        }
       },
-      {
-        "label": "RESTRICTS",
-        "fromVertex": "Country",
-        "toVertex": "Company",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "SOLD_INTO",
+      "fromNodeLabel": "Server",
+      "toNodeLabel": "Market",
+      "id": [
+        {
+          "name": "product_id",
+          "type": "String"
+        },
+        {
+          "name": "market_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "product_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "market_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "revenue_usd",
+          "type": "Long"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_restriction"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_license",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "imposing_country",
-              "alias": "from_imposing_country"
+              "sourceFieldName": "vendor_company_id",
+              "targetFieldName": "vendor_company_id"
+            },
+            {
+              "sourceFieldName": "licensee_company_id",
+              "targetFieldName": "licensee_company_id"
+            },
+            {
+              "sourceFieldName": "license_type",
+              "targetFieldName": "license_type"
+            },
+            {
+              "sourceFieldName": "annual_fee_usd",
+              "targetFieldName": "annual_fee_usd"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "company_id",
-              "alias": "to_company_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "String",
-            "field": "restriction_id",
-            "alias": "restriction_id"
-          },
-          {
-            "type": "String",
-            "field": "list_type",
-            "alias": "list_type"
-          },
-          {
-            "type": "String",
-            "field": "program",
-            "alias": "program"
-          },
-          {
-            "type": "Date",
-            "field": "start_date",
-            "alias": "start_date"
-          },
-          {
-            "type": "String",
-            "field": "license_policy",
-            "alias": "license_policy"
-          }
-        ]
+        }
       },
-      {
-        "label": "IMPACTS",
-        "fromVertex": "Event",
-        "toVertex": "Facility",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "LICENSES_TO",
+      "fromNodeLabel": "Company",
+      "toNodeLabel": "Company",
+      "id": [
+        {
+          "name": "vendor_company_id",
+          "type": "String"
+        },
+        {
+          "name": "licensee_company_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "vendor_company_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "licensee_company_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "license_type",
+          "type": "String"
+        },
+        {
+          "name": "annual_fee_usd",
+          "type": "Long"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_event_impact"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_restriction",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "event_id",
-              "alias": "from_event_id"
+              "sourceFieldName": "imposing_country",
+              "targetFieldName": "imposing_country"
+            },
+            {
+              "sourceFieldName": "company_id",
+              "targetFieldName": "company_id"
+            },
+            {
+              "sourceFieldName": "restriction_id",
+              "targetFieldName": "restriction_id"
+            },
+            {
+              "sourceFieldName": "list_type",
+              "targetFieldName": "list_type"
+            },
+            {
+              "sourceFieldName": "program",
+              "targetFieldName": "program"
+            },
+            {
+              "sourceFieldName": "start_date",
+              "targetFieldName": "start_date"
+            },
+            {
+              "sourceFieldName": "license_policy",
+              "targetFieldName": "license_policy"
             }
           ]
-        },
-        "toId": {
-          "fields": [
-            {
-              "type": "String",
-              "field": "facility_id",
-              "alias": "to_facility_id"
-            }
-          ]
-        },
-        "attributes": [
-          {
-            "type": "Double",
-            "field": "distance_km",
-            "alias": "distance_km"
-          },
-          {
-            "type": "Double",
-            "field": "capacity_loss_pct",
-            "alias": "capacity_loss_pct"
-          },
-          {
-            "type": "Long",
-            "field": "recovery_weeks",
-            "alias": "recovery_weeks"
-          }
-        ]
+        }
       },
-      {
-        "label": "INVOLVES",
-        "fromVertex": "Event",
-        "toVertex": "Country",
-        "tableSource": {
-          "catalog": "iceberg",
+      "label": "RESTRICTS",
+      "fromNodeLabel": "Country",
+      "toNodeLabel": "Company",
+      "id": [
+        {
+          "name": "restriction_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "imposing_country",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "company_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "restriction_id",
+          "type": "String"
+        },
+        {
+          "name": "list_type",
+          "type": "String"
+        },
+        {
+          "name": "program",
+          "type": "String"
+        },
+        {
+          "name": "start_date",
+          "type": "Date"
+        },
+        {
+          "name": "license_policy",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
           "schema": "ai_chip_supply_chain",
-          "table": "synthetic_event_country"
-        },
-        "fromId": {
-          "fields": [
+          "table": "synthetic_event_impact",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "event_id",
-              "alias": "from_event_id"
+              "sourceFieldName": "event_id",
+              "targetFieldName": "event_id"
+            },
+            {
+              "sourceFieldName": "facility_id",
+              "targetFieldName": "facility_id"
+            },
+            {
+              "sourceFieldName": "distance_km",
+              "targetFieldName": "distance_km"
+            },
+            {
+              "sourceFieldName": "capacity_loss_pct",
+              "targetFieldName": "capacity_loss_pct"
+            },
+            {
+              "sourceFieldName": "recovery_weeks",
+              "targetFieldName": "recovery_weeks"
             }
           ]
+        }
+      },
+      "label": "IMPACTS",
+      "fromNodeLabel": "Event",
+      "toNodeLabel": "Facility",
+      "id": [
+        {
+          "name": "event_id",
+          "type": "String"
         },
-        "toId": {
-          "fields": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "event_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "facility_id",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "distance_km",
+          "type": "Double"
+        },
+        {
+          "name": "capacity_loss_pct",
+          "type": "Double"
+        },
+        {
+          "name": "recovery_weeks",
+          "type": "Int"
+        }
+      ]
+    },
+    {
+      "dataSourceGroup": {
+        "externalDataSource": {
+          "enabled": true,
+          "catalog": "iceberg_test",
+          "schema": "ai_chip_supply_chain",
+          "table": "synthetic_event_country",
+          "mappedField": [
             {
-              "type": "String",
-              "field": "country",
-              "alias": "to_country"
+              "sourceFieldName": "event_id",
+              "targetFieldName": "event_id"
+            },
+            {
+              "sourceFieldName": "country",
+              "targetFieldName": "country"
+            },
+            {
+              "sourceFieldName": "relation",
+              "targetFieldName": "relation"
             }
           ]
+        }
+      },
+      "label": "INVOLVES",
+      "fromNodeLabel": "Event",
+      "toNodeLabel": "Country",
+      "id": [
+        {
+          "name": "event_id",
+          "type": "String"
         },
-        "attributes": [
-          {
-            "type": "String",
-            "field": "relation",
-            "alias": "relation"
-          }
-        ]
-      }
-    ]
-  }
+        {
+          "name": "country",
+          "type": "String"
+        },
+        {
+          "name": "relation",
+          "type": "String"
+        }
+      ],
+      "fromKey": [
+        {
+          "name": "event_id",
+          "type": "String"
+        }
+      ],
+      "toKey": [
+        {
+          "name": "country",
+          "type": "String"
+        }
+      ],
+      "attribute": [
+        {
+          "name": "relation",
+          "type": "String"
+        }
+      ]
+    }
+  ]
 }

@@ -1,7 +1,7 @@
 ## Prerequisites:
 - Docker
 - Docker Compose
-- Python 3
+- Python 3 (only to rebuild the data)
 
 ## Dataset
 
@@ -32,18 +32,29 @@ The synthetic network is invented but shaped by real information:
 
 **Any figure computed from a `synthetic_` table is illustrative, even if real data is also involved.**
 
-## Demo Data Preparation
+## Running the Demo
 
-The ready-to-use data is already in `csv_data/`, so you can go straight to step 3. Steps 1 and 2 show how to rebuild it.
+1. Start the services and load the data into Iceberg:
+```bash
+./init.sh
+```
+This starts the containers, converts `csv_data/` to Parquet, creates the Iceberg tables and checks that every table loaded completely. It runs entirely in Docker, takes under a minute, and is safe to re-run.
 
-1. (Optional) Set up a virtual environment and install the dependencies:
+2. Create the graph schema in PuppyGraph:
+   - Open http://localhost:8081 and sign in (username `puppygraph`, password `puppygraph123`).
+   - Build the schema with PuppyGraph's schema builder, following [SCHEMA.md](SCHEMA.md) for the catalog connection, vertices and edges.
+
+3. Run the queries in [QUERIES.md](QUERIES.md): SQL for simple questions, Cypher for the multi-hop ones.
+
+To stop the demo, run `docker compose down`. Add `-v` to also delete the loaded tables.
+
+## Rebuilding the Data (Optional)
+
+The ready-to-use data is already in `csv_data/`. To rebuild it, install the Python dependencies and run the two scripts, then run `./init.sh` again:
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-```
 
-2. (Optional) Rebuild the data:
-```bash
 # Real data: download and filter CEPII BACI trade flows (reads ~800 MB remotely; takes a few minutes)
 python3 scripts/fetch_baci.py --out csv_data
 
@@ -53,23 +64,6 @@ python3 scripts/generate.py --scale small --seed 42 --out csv_data
 ```
 The same seed and scale always produce identical files. `--scale large` creates a network about 8 times bigger for performance testing; its money totals are not calibrated to real market sizes.
 
-3. Convert the CSV files to Parquet:
-```bash
-python3 CsvToParquet.py ./csv_data ./parquet_data
-```
-
-4. Start the services and load the tables into Iceberg:
-```bash
-docker compose up -d
-docker exec -i spark-iceberg spark-sql < init.sql
-```
-
-5. Upload the graph schema to PuppyGraph:
-   - Open http://localhost:8081 and sign in (username `puppygraph`, password `puppygraph123`).
-   - Upload `schema.json`.
-
-6. Run the queries in [QUERIES.md](QUERIES.md): SQL for simple questions, Cypher for the multi-hop ones.
-
 ## Project Layout
 
 | Path | Purpose |
@@ -78,7 +72,8 @@ docker exec -i spark-iceberg spark-sql < init.sql
 | `scripts/fetch_baci.py` | Downloads and filters the real BACI trade data |
 | `scripts/generate.py` | Generates and validates the synthetic network |
 | `scripts/reference/company_names.json` | Fixed list of screened fictional company names used by the generator |
-| `init.sql` | Creates the Iceberg tables and loads the Parquet files |
-| `schema.json` | PuppyGraph graph schema over the Iceberg tables |
+| `init.sh` | Starts the services and loads the data into Iceberg |
+| `init.sql` | Iceberg table definitions, run by `init.sh` |
+| `SCHEMA.md` | Recommended PuppyGraph graph schema over the Iceberg tables |
 | `QUERIES.md` | SQL and Cypher queries for each question |
 | `DATA_LICENSE.md` | Licences for the data |

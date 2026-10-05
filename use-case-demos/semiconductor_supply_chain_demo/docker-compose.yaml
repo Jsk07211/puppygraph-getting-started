@@ -6,12 +6,22 @@ services:
     networks:
       iceberg_net:
     depends_on:
-      - rest
-      - minio
+      rest:
+        condition: service_started
+      rustfs:
+        condition: service_started
+      storage-init:
+        condition: service_completed_successfully
     volumes:
       - ./warehouse:/home/iceberg/warehouse
       - ./notebooks:/home/iceberg/notebooks/notebooks
       - ./parquet_data:/parquet_data
+      # Used by init.sh: data, the CSV-to-Parquet converter, the table definitions, and
+      # Spark defaults that point Iceberg's S3 client at RustFS.
+      - ./csv_data:/csv_data:ro
+      - ./CsvToParquet.py:/home/iceberg/CsvToParquet.py:ro
+      - ./init.sql:/home/iceberg/init.sql:ro
+      - ./conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf:ro
     environment:
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password
@@ -34,41 +44,48 @@ services:
       - AWS_REGION=us-east-1
       - CATALOG_WAREHOUSE=s3://warehouse/
       - CATALOG_IO__IMPL=org.apache.iceberg.aws.s3.S3FileIO
-      - CATALOG_S3_ENDPOINT=http://minio:9000
-  minio:
-    image: minio/minio
-    container_name: minio
+      - CATALOG_S3_ENDPOINT=http://rustfs:9000
+      - CATALOG_S3_PATH__STYLE__ACCESS=true
+  # RustFS instead of MinIO: MinIO's Docker Hub images are no longer anonymously
+  # pullable (the registry issues a token, then denies the manifest). RustFS is
+  # S3-compatible, exposes the same 9000/9001, and takes the same credentials.
+  rustfs:
+    image: rustfs/rustfs:latest
+    container_name: rustfs
     environment:
-      - MINIO_ROOT_USER=admin
-      - MINIO_ROOT_PASSWORD=password
-      - MINIO_DOMAIN=minio
+      - RUSTFS_ACCESS_KEY=admin
+      - RUSTFS_SECRET_KEY=password
+      - RUSTFS_VOLUMES=/data
+    volumes:
+      - warehouse-data:/data
     networks:
       iceberg_net:
+        # kept so existing catalog configs that point at http://minio:9000 resolve
         aliases:
+          - minio
           - warehouse.minio
     ports:
       - 9001:9001
       - 9000:9000
-    command: ["server", "/data", "--console-address", ":9001"]
-  mc:
+  # Creates the warehouse bucket. RustFS does not treat a directory under the data
+  # volume as a bucket, so this has to go through the S3 API rather than mkdir.
+  storage-init:
+    image: amazon/aws-cli:latest
+    container_name: storage-init
     depends_on:
-      - minio
-    image: minio/mc
-    container_name: mc
-    networks:
-      iceberg_net:
+      - rustfs
     environment:
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password
       - AWS_REGION=us-east-1
     entrypoint: >
       /bin/sh -c "
-      until (/usr/bin/mc alias set minio http://minio:9000 admin password) do echo '...waiting...' && sleep 1; done;
-      /usr/bin/mc rm -r --force minio/warehouse;
-      /usr/bin/mc mb minio/warehouse;
-      /usr/bin/mc anonymous set public minio/warehouse;
-      tail -f /dev/null
+      until aws --endpoint-url http://rustfs:9000 s3 ls >/dev/null 2>&1; do echo '...waiting for rustfs...'; sleep 2; done;
+      aws --endpoint-url http://rustfs:9000 s3 mb s3://warehouse || true;
+      aws --endpoint-url http://rustfs:9000 s3 ls
       "
+    networks:
+      iceberg_net:
   puppygraph:
     image: puppygraph/puppygraph:latest
     container_name: puppygraph
@@ -86,3 +103,6 @@ services:
 networks:
   iceberg_net:
     name: puppy-iceberg
+
+volumes:
+  warehouse-data:

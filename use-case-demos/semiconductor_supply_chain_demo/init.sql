@@ -2,9 +2,7 @@
 -- Real tables (no prefix) come from CEPII BACI; tables prefixed synthetic_ are fictional.
 -- See the Dataset section of README.md for details.
 --
--- Run inside the spark-iceberg container after converting csv_data/ to Parquet:
---   docker exec -i spark-iceberg spark-sql < init.sql
--- Safe to re-run: tables are created if missing and their contents replaced.
+-- Run by init.sh. Safe to re-run: tables are created if missing and their contents replaced.
 
 CREATE DATABASE IF NOT EXISTS ai_chip_supply_chain;
 

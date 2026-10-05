@@ -1,6 +1,6 @@
 # Queries
 
-Simple questions are answered with SQL directly on the Iceberg tables. Questions that follow the supply chain across several steps are answered with Cypher on the PuppyGraph graph defined in `schema.json`, which reads the same tables without copying them.
+Simple questions are answered with SQL directly on the Iceberg tables. Questions that follow the supply chain across several steps are answered with Cypher on the PuppyGraph graph described in [SCHEMA.md](SCHEMA.md), which reads the same tables without copying them.
 
 Figures from real tables (`country`, `product`, `trade_flow`) are real. Any figure that touches a `synthetic_` table is illustrative. See the Dataset section of the [README](README.md).
 
@@ -44,6 +44,17 @@ FROM (
   WHERE p.part_type = 'ai_accelerator'
   GROUP BY p.part_id
 ) t;
+```
+
+### How fast did advanced packaging capacity grow? (illustrative)
+
+```sql
+SELECT c.year, SUM(c.capacity) AS interposer_wafers_per_month
+FROM ai_chip_supply_chain.synthetic_facility_capacity c
+JOIN ai_chip_supply_chain.synthetic_facility f ON f.facility_id = c.facility_id
+WHERE f.domain = 'advanced_packaging'
+GROUP BY c.year
+ORDER BY c.year;
 ```
 
 ## Cypher: Questions That Need the Graph
@@ -142,6 +153,20 @@ MATCH (f)-[:FABRICATES]->(:Part)-[:COMPONENT_OF|USED_IN*1..3]->(srv:Server)
 RETURN s.name AS lithography_supplier, count(DISTINCT f) AS sole_sourced_facilities,
        count(DISTINCT srv) AS servers_depending
 ORDER BY servers_depending DESC;
+```
+
+### 7. Capacity knocked out, at a point in time
+
+How much capacity the hypothetical Hsinchu earthquake would remove, using each facility's capacity in 2025 (its `CapacitySnapshot` for that year) rather than its full planned capacity.
+*Path: Event → Facility → CapacitySnapshot.*
+
+```cypher
+MATCH (:Event {event_id: 'V001'})-[i:IMPACTS]->(f:Facility)-[:HAS_CAPACITY]->(c:CapacitySnapshot {year: 2025})
+WHERE c.capacity > 0
+RETURN f.facility_type, c.capacity_unit,
+       count(f) AS facilities_hit,
+       sum(c.capacity * i.capacity_loss_pct / 100) AS capacity_lost
+ORDER BY facilities_hit DESC;
 ```
 
 ## Side by Side: The Same Question in SQL
