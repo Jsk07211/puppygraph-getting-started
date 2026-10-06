@@ -96,7 +96,9 @@ CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_facility (
   wafer_size_mm          INT,
   capacity               BIGINT,
   capacity_unit          STRING,
-  time_to_recover_weeks  INT
+  time_to_recover_weeks  INT,
+  capacity_source        STRING,
+  capacity_confidence    STRING
 ) USING iceberg;
 
 INSERT OVERWRITE ai_chip_supply_chain.synthetic_facility
@@ -117,7 +119,9 @@ SELECT
   CAST(wafer_size_mm AS INT),
   CAST(capacity AS BIGINT),
   CAST(capacity_unit AS STRING),
-  CAST(time_to_recover_weeks AS INT)
+  CAST(time_to_recover_weeks AS INT),
+  CAST(capacity_source AS STRING),
+  CAST(capacity_confidence AS STRING)
 FROM parquet.`/parquet_data/synthetic_facility.parquet`;
 
 -- SYNTHETIC. Capacity per facility per year.
@@ -226,17 +230,18 @@ FROM parquet.`/parquet_data/synthetic_disruption_event.parquet`;
 
 -- SYNTHETIC edge: equipment / materials company -> facility.
 CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_supply (
-  supply_id                STRING,
-  supplier_company_id      STRING,
-  facility_id              STRING,
-  supply_category          STRING,
-  hs_code                  STRING,
-  annual_value_usd         BIGINT,
-  share_of_need_pct        DOUBLE,
-  lead_time_weeks          INT,
-  inventory_weeks_on_hand  INT,
-  contract_start           DATE,
-  contract_end             DATE
+  supply_id            STRING,
+  supplier_company_id  STRING,
+  facility_id          STRING,
+  supply_category      STRING,
+  hs_code              STRING,
+  annual_value_usd     BIGINT,
+  share_of_need_pct    DOUBLE,
+  lead_time_weeks      INT,
+  contract_start       DATE,
+  contract_end         DATE,
+  data_source          STRING,
+  confidence           STRING
 ) USING iceberg;
 
 INSERT OVERWRITE ai_chip_supply_chain.synthetic_supply
@@ -249,9 +254,10 @@ SELECT
   CAST(annual_value_usd AS BIGINT),
   CAST(share_of_need_pct AS DOUBLE),
   CAST(lead_time_weeks AS INT),
-  CAST(inventory_weeks_on_hand AS INT),
   CAST(contract_start AS DATE),
-  CAST(contract_end AS DATE)
+  CAST(contract_end AS DATE),
+  CAST(data_source AS STRING),
+  CAST(confidence AS STRING)
 FROM parquet.`/parquet_data/synthetic_supply.parquet`;
 
 -- SYNTHETIC edge: qualified backup supplier -> facility.
@@ -260,7 +266,9 @@ CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_alt_supplier (
   facility_id           STRING,
   supply_category       STRING,
   qualification_months  INT,
-  spare_capacity_pct    DOUBLE
+  spare_capacity_pct    DOUBLE,
+  data_source           STRING,
+  confidence            STRING
 ) USING iceberg;
 
 INSERT OVERWRITE ai_chip_supply_chain.synthetic_alt_supplier
@@ -269,7 +277,9 @@ SELECT
   CAST(facility_id AS STRING),
   CAST(supply_category AS STRING),
   CAST(qualification_months AS INT),
-  CAST(spare_capacity_pct AS DOUBLE)
+  CAST(spare_capacity_pct AS DOUBLE),
+  CAST(data_source AS STRING),
+  CAST(confidence AS STRING)
 FROM parquet.`/parquet_data/synthetic_alt_supplier.parquet`;
 
 -- SYNTHETIC edge: facility -> chip part it fabricates.
@@ -278,7 +288,8 @@ CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_fabrication (
   part_id                   STRING,
   share_of_part_volume_pct  DOUBLE,
   lead_time_weeks           INT,
-  inventory_weeks_on_hand   INT,
+  data_source               STRING,
+  confidence                STRING,
   wafers_per_month          INT
 ) USING iceberg;
 
@@ -288,7 +299,8 @@ SELECT
   CAST(part_id AS STRING),
   CAST(share_of_part_volume_pct AS DOUBLE),
   CAST(lead_time_weeks AS INT),
-  CAST(inventory_weeks_on_hand AS INT),
+  CAST(data_source AS STRING),
+  CAST(confidence AS STRING),
   CAST(wafers_per_month AS INT)
 FROM parquet.`/parquet_data/synthetic_fabrication.parquet`;
 
@@ -298,7 +310,8 @@ CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_packaging (
   part_id                   STRING,
   share_of_part_volume_pct  DOUBLE,
   lead_time_weeks           INT,
-  inventory_weeks_on_hand   INT
+  data_source               STRING,
+  confidence                STRING
 ) USING iceberg;
 
 INSERT OVERWRITE ai_chip_supply_chain.synthetic_packaging
@@ -307,7 +320,8 @@ SELECT
   CAST(part_id AS STRING),
   CAST(share_of_part_volume_pct AS DOUBLE),
   CAST(lead_time_weeks AS INT),
-  CAST(inventory_weeks_on_hand AS INT)
+  CAST(data_source AS STRING),
+  CAST(confidence AS STRING)
 FROM parquet.`/parquet_data/synthetic_packaging.parquet`;
 
 -- SYNTHETIC edge: qualified backup facility -> chip part.
@@ -316,7 +330,9 @@ CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_alt_facility (
   part_id               STRING,
   step                  STRING,
   qualification_months  INT,
-  spare_capacity_pct    DOUBLE
+  spare_capacity_pct    DOUBLE,
+  data_source           STRING,
+  confidence            STRING
 ) USING iceberg;
 
 INSERT OVERWRITE ai_chip_supply_chain.synthetic_alt_facility
@@ -325,21 +341,27 @@ SELECT
   CAST(part_id AS STRING),
   CAST(step AS STRING),
   CAST(qualification_months AS INT),
-  CAST(spare_capacity_pct AS DOUBLE)
+  CAST(spare_capacity_pct AS DOUBLE),
+  CAST(data_source AS STRING),
+  CAST(confidence AS STRING)
 FROM parquet.`/parquet_data/synthetic_alt_facility.parquet`;
 
 -- SYNTHETIC edge: component part -> parent part (e.g. HBM -> AI accelerator).
 CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_part_component (
   component_part_id  STRING,
   parent_part_id     STRING,
-  quantity           INT
+  quantity           INT,
+  data_source        STRING,
+  confidence         STRING
 ) USING iceberg;
 
 INSERT OVERWRITE ai_chip_supply_chain.synthetic_part_component
 SELECT
   CAST(component_part_id AS STRING),
   CAST(parent_part_id AS STRING),
-  CAST(quantity AS INT)
+  CAST(quantity AS INT),
+  CAST(data_source AS STRING),
+  CAST(confidence AS STRING)
 FROM parquet.`/parquet_data/synthetic_part_component.parquet`;
 
 -- SYNTHETIC edge: chip part -> AI server (bill of materials).
@@ -361,8 +383,7 @@ CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_assembly (
   facility_id                  STRING,
   product_id                   STRING,
   share_of_product_volume_pct  DOUBLE,
-  lead_time_weeks              INT,
-  inventory_weeks_on_hand      INT
+  lead_time_weeks              INT
 ) USING iceberg;
 
 INSERT OVERWRITE ai_chip_supply_chain.synthetic_assembly
@@ -370,8 +391,7 @@ SELECT
   CAST(facility_id AS STRING),
   CAST(product_id AS STRING),
   CAST(share_of_product_volume_pct AS DOUBLE),
-  CAST(lead_time_weeks AS INT),
-  CAST(inventory_weeks_on_hand AS INT)
+  CAST(lead_time_weeks AS INT)
 FROM parquet.`/parquet_data/synthetic_assembly.parquet`;
 
 -- SYNTHETIC edge: AI server -> end market.
@@ -388,21 +408,29 @@ SELECT
   CAST(revenue_usd AS BIGINT)
 FROM parquet.`/parquet_data/synthetic_sales.parquet`;
 
--- SYNTHETIC edge: EDA / IP vendor -> chip designer.
-CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_license (
-  vendor_company_id    STRING,
-  licensee_company_id  STRING,
-  license_type         STRING,
-  annual_fee_usd       BIGINT
+-- SYNTHETIC edge: facility -> part it holds in stock, with days of supply.
+CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_stock (
+  facility_id     STRING,
+  part_id         STRING,
+  as_of_date      STRING,
+  units_on_hand   INT,
+  daily_usage     DOUBLE,
+  days_of_supply  DOUBLE,
+  data_source     STRING,
+  confidence      STRING
 ) USING iceberg;
 
-INSERT OVERWRITE ai_chip_supply_chain.synthetic_license
+INSERT OVERWRITE ai_chip_supply_chain.synthetic_stock
 SELECT
-  CAST(vendor_company_id AS STRING),
-  CAST(licensee_company_id AS STRING),
-  CAST(license_type AS STRING),
-  CAST(annual_fee_usd AS BIGINT)
-FROM parquet.`/parquet_data/synthetic_license.parquet`;
+  CAST(facility_id AS STRING),
+  CAST(part_id AS STRING),
+  CAST(as_of_date AS STRING),
+  CAST(units_on_hand AS INT),
+  CAST(daily_usage AS DOUBLE),
+  CAST(days_of_supply AS DOUBLE),
+  CAST(data_source AS STRING),
+  CAST(confidence AS STRING)
+FROM parquet.`/parquet_data/synthetic_stock.parquet`;
 
 -- SYNTHETIC edge: country -> restricted company (fictional restrictions).
 CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_restriction (
@@ -412,7 +440,9 @@ CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_restriction (
   list_type         STRING,
   program           STRING,
   start_date        DATE,
-  license_policy    STRING
+  license_policy    STRING,
+  data_source       STRING,
+  confidence        STRING
 ) USING iceberg;
 
 INSERT OVERWRITE ai_chip_supply_chain.synthetic_restriction
@@ -423,7 +453,9 @@ SELECT
   CAST(list_type AS STRING),
   CAST(program AS STRING),
   CAST(start_date AS DATE),
-  CAST(license_policy AS STRING)
+  CAST(license_policy AS STRING),
+  CAST(data_source AS STRING),
+  CAST(confidence AS STRING)
 FROM parquet.`/parquet_data/synthetic_restriction.parquet`;
 
 -- SYNTHETIC edge: disruption event -> affected facility.
@@ -432,7 +464,10 @@ CREATE TABLE IF NOT EXISTS ai_chip_supply_chain.synthetic_event_impact (
   facility_id        STRING,
   distance_km        DOUBLE,
   capacity_loss_pct  DOUBLE,
-  recovery_weeks     INT
+  recovery_weeks     INT,
+  reported_at        STRING,
+  data_source        STRING,
+  confidence         STRING
 ) USING iceberg;
 
 INSERT OVERWRITE ai_chip_supply_chain.synthetic_event_impact
@@ -441,7 +476,10 @@ SELECT
   CAST(facility_id AS STRING),
   CAST(distance_km AS DOUBLE),
   CAST(capacity_loss_pct AS DOUBLE),
-  CAST(recovery_weeks AS INT)
+  CAST(recovery_weeks AS INT),
+  CAST(reported_at AS STRING),
+  CAST(data_source AS STRING),
+  CAST(confidence AS STRING)
 FROM parquet.`/parquet_data/synthetic_event_impact.parquet`;
 
 -- SYNTHETIC edge: disruption event -> country (location, target or imposing).

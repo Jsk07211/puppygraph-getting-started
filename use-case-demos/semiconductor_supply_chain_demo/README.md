@@ -25,6 +25,13 @@ Limits of the real data:
 
 Everything in a `synthetic_` table is fictional: companies, facilities, chip parts, AI servers, supply contracts, restrictions and disruption events. None of it describes a real company, contract or event, and disruption events are hypothetical scenarios, not forecasts.
 
+The synthetic data is shaped like what an AI server maker could realistically assemble about its own supply chain:
+- **Its own records:** servers, bills of materials, sales, assembly plants, stock levels (days of supply) and approved backup manufacturers.
+- **What suppliers disclose:** which fabs and packaging plants make each part, and continuity-survey estimates such as time to recover.
+- **Third-party and public intelligence** for deeper tiers: equipment and materials suppliers to fabs, facility capacity estimates and disruption reports.
+
+Tables that mix these sources carry `data_source` and `confidence` columns, so analysis can separate what is confirmed from what is estimated. See [SCHEMA.md](SCHEMA.md) for details.
+
 The synthetic network is invented but shaped by real information:
 - Suppliers' countries are weighted by real BACI trade flows, and server assembly plants are placed in proportion to real BACI server exports. The generator checks that cross-border equipment contracts track the real flows.
 - Facilities are placed in real chip-industry cities; the facilities themselves are fictional.

@@ -35,7 +35,7 @@ Vertex attributes (all columns other than a single-column ID; composite ID colum
 
 - **Country**: `iso2` (String), `name` (String)
 - **Company**: `name` (String), `role` (String), `subtype` (String), `hq_country` (String), `ownership` (String), `founded_year` (Int), `employees` (Int)
-- **Facility**: `company_id` (String), `name` (String), `facility_type` (String), `city` (String), `country` (String), `latitude` (Double), `longitude` (Double), `status` (String), `hvm_start_year` (Int), `domain` (String), `process_node` (String), `process_node_nm` (Double), `wafer_size_mm` (Int), `capacity` (Long), `capacity_unit` (String), `time_to_recover_weeks` (Int)
+- **Facility**: `company_id` (String), `name` (String), `facility_type` (String), `city` (String), `country` (String), `latitude` (Double), `longitude` (Double), `status` (String), `hvm_start_year` (Int), `domain` (String), `process_node` (String), `process_node_nm` (Double), `wafer_size_mm` (Int), `capacity` (Long), `capacity_unit` (String), `time_to_recover_weeks` (Int), `capacity_source` (String), `capacity_confidence` (String)
 - **Part**: `part_number` (String), `part_type` (String), `designer_company_id` (String), `hs_code` (String), `process_node_nm` (Double), `unit_price_usd` (Double)
 - **Server**: `maker_company_id` (String), `name` (String), `product_type` (String), `hs_code` (String), `unit_price_usd` (Double), `annual_units` (Int), `annual_revenue_usd` (Long)
 - **Market**: `name` (String), `description` (String)
@@ -63,7 +63,7 @@ Several edges come from a vertex table's foreign-key column rather than a separa
 | `MAKES` | Company → Server | `synthetic_end_product` | `maker_company_id` → `product_id` | `product_id` | Company makes server |
 | `ASSEMBLES` | Facility → Server | `synthetic_assembly` | `facility_id` → `product_id` | `facility_id`, `product_id` | Assembly plant assembles server |
 | `SOLD_INTO` | Server → Market | `synthetic_sales` | `product_id` → `market_id` | `product_id`, `market_id` | Server revenue by end market |
-| `LICENSES_TO` | Company → Company | `synthetic_license` | `vendor_company_id` → `licensee_company_id` | `vendor_company_id`, `licensee_company_id` | EDA / IP vendor licenses to chip designer |
+| `HOLDS_STOCK` | Facility → Part | `synthetic_stock` | `facility_id` → `part_id` | `facility_id`, `part_id`, `as_of_date` | Stock of a part at a facility, as days of supply |
 | `RESTRICTS` | Country → Company | `synthetic_restriction` | `imposing_country` → `company_id` | `restriction_id` | Fictional export restriction on a company |
 | `IMPACTS` | Event → Facility | `synthetic_event_impact` | `event_id` → `facility_id` | `event_id`, `facility_id` | Disruption affects facility |
 | `INVOLVES` | Event → Country | `synthetic_event_country` | `event_id` → `country` | `event_id`, `country`, `relation` | Disruption's location, target or imposing country |
@@ -75,24 +75,39 @@ Edge attributes:
 - **HQ_IN**: none
 - **OPERATES**: none
 - **LOCATED_IN**: none
-- **SUPPLIES**: `supply_id` (String), `supply_category` (String), `hs_code` (String), `annual_value_usd` (Long), `share_of_need_pct` (Double), `lead_time_weeks` (Int), `inventory_weeks_on_hand` (Int), `contract_start` (Date), `contract_end` (Date)
-- **ALT_SUPPLIER_FOR**: `supply_category` (String), `qualification_months` (Int), `spare_capacity_pct` (Double)
-- **FABRICATES**: `share_of_part_volume_pct` (Double), `lead_time_weeks` (Int), `inventory_weeks_on_hand` (Int), `wafers_per_month` (Int)
-- **PACKAGES**: `share_of_part_volume_pct` (Double), `lead_time_weeks` (Int), `inventory_weeks_on_hand` (Int)
-- **ALT_FOR**: `step` (String), `qualification_months` (Int), `spare_capacity_pct` (Double)
+- **SUPPLIES**: `supply_id` (String), `supply_category` (String), `hs_code` (String), `annual_value_usd` (Long), `share_of_need_pct` (Double), `lead_time_weeks` (Int), `contract_start` (Date), `contract_end` (Date), `data_source` (String), `confidence` (String)
+- **ALT_SUPPLIER_FOR**: `supply_category` (String), `qualification_months` (Int), `spare_capacity_pct` (Double), `data_source` (String), `confidence` (String)
+- **FABRICATES**: `share_of_part_volume_pct` (Double), `lead_time_weeks` (Int), `data_source` (String), `confidence` (String), `wafers_per_month` (Int)
+- **PACKAGES**: `share_of_part_volume_pct` (Double), `lead_time_weeks` (Int), `data_source` (String), `confidence` (String)
+- **ALT_FOR**: `step` (String), `qualification_months` (Int), `spare_capacity_pct` (Double), `data_source` (String), `confidence` (String)
 - **DESIGNS**: none
-- **COMPONENT_OF**: `quantity` (Int)
+- **COMPONENT_OF**: `quantity` (Int), `data_source` (String), `confidence` (String)
 - **USED_IN**: `units_per_product` (Int)
 - **MAKES**: none
-- **ASSEMBLES**: `share_of_product_volume_pct` (Double), `lead_time_weeks` (Int), `inventory_weeks_on_hand` (Int)
+- **ASSEMBLES**: `share_of_product_volume_pct` (Double), `lead_time_weeks` (Int)
 - **SOLD_INTO**: `revenue_usd` (Long)
-- **LICENSES_TO**: `license_type` (String), `annual_fee_usd` (Long)
-- **RESTRICTS**: `restriction_id` (String), `list_type` (String), `program` (String), `start_date` (Date), `license_policy` (String)
-- **IMPACTS**: `distance_km` (Double), `capacity_loss_pct` (Double), `recovery_weeks` (Int)
+- **HOLDS_STOCK**: `as_of_date` (String), `units_on_hand` (Int), `daily_usage` (Double), `days_of_supply` (Double), `data_source` (String), `confidence` (String)
+- **RESTRICTS**: `restriction_id` (String), `list_type` (String), `program` (String), `start_date` (Date), `license_policy` (String), `data_source` (String), `confidence` (String)
+- **IMPACTS**: `distance_km` (Double), `capacity_loss_pct` (Double), `recovery_weeks` (Int), `reported_at` (String), `data_source` (String), `confidence` (String)
 - **INVOLVES**: `relation` (String)
 - **HAS_CAPACITY**: none
 
 Edge ID columns are the table's unique key. Use them if the schema builder asks for an edge ID; a composite ID uses all the listed columns.
+
+## Where Each Fact Comes From
+
+The data is shaped like what an AI server maker could actually assemble about its supply chain. Tables that mix sources carry two columns (for facilities they apply to capacity and are called `capacity_source` and `capacity_confidence`):
+
+| `data_source` | Meaning |
+|---|---|
+| `own_system` | The company's own records: bills of materials, plants, stock, approved manufacturer list |
+| `supplier_disclosed` | Provided by a supplier, e.g. which sites make a part, or a continuity-survey answer |
+| `third_party` | Bought from a data provider or risk-monitoring service |
+| `public` | Public reporting, filings or screening lists |
+
+`confidence` is `confirmed` or `estimated`. Some values are always estimates regardless of the row's confidence: `share_of_part_volume_pct` on `FABRICATES` and `PACKAGES`, `annual_value_usd` and `share_of_need_pct` on `SUPPLIES`, and `time_to_recover_weeks` on `Facility` (a self-reported survey answer). Event impacts carry `reported_at`, because estimates arrive days after an event and confirmed figures later.
+
+Tables without these columns (servers, bills of materials, sales, chip parts, assembly) are the company's own data.
 
 ## Capacity: Current Value and History
 

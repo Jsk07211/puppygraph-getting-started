@@ -18,6 +18,12 @@ suppliers, the supplier's country is weighted by real BACI trade from that
 country into the facility's country. Server assembly plants are located in
 proportion to real BACI server exports.
 
+Realism: the data is shaped like what an AI server maker could actually assemble
+about its supply chain: its own systems (bills of materials, plants, sales, stock),
+what suppliers disclose (which sites make a part, continuity-survey estimates) and
+third-party or public intelligence for deeper tiers. Tables with mixed origins carry
+data_source and confidence columns saying how each fact would be known.
+
 Validation runs before anything is written; if any check fails, no files are
 written. Output is deterministic for a given --seed and --scale.
 
@@ -43,7 +49,7 @@ YEARS = range(2017, 2026)
 
 # Company counts per role at scale "small". Scale "large" multiplies these.
 ROLE_COUNTS = {
-    "materials": 50, "equipment": 50, "eda_ip": 10, "foundry": 16, "memory": 10,
+    "materials": 50, "equipment": 50, "foundry": 16, "memory": 14,
     "packaging": 24, "chip_designer": 100, "server_maker": 40,
 }
 SCALE_FACTORS = {"small": 1, "large": 8}
@@ -52,7 +58,6 @@ SCALE_FACTORS = {"small": 1, "large": 8}
 ROLE_HQ_WEIGHTS = {
     "materials": {"JPN": 35, "USA": 15, "TWN": 12, "KOR": 12, "DEU": 12, "CHN": 14},
     "equipment": {"USA": 28, "JPN": 28, "NLD": 12, "KOR": 8, "DEU": 8, "CHN": 16},
-    "eda_ip": {"USA": 70, "GBR": 30},
     "foundry": {"TWN": 40, "CHN": 25, "USA": 15, "KOR": 12, "JPN": 8},
     "memory": {"KOR": 45, "USA": 20, "CHN": 20, "JPN": 15},
     "packaging": {"TWN": 35, "CHN": 25, "MYS": 10, "KOR": 10, "USA": 10, "SGP": 10},
@@ -73,9 +78,8 @@ ROLE_SUBTYPES = {
         "metrology": (0.16, None), "cleaning": (0.12, None), "ion_implant": (0.1, None),
         "assembly_tools": (0.16, {"JPN": 30, "SGP": 25, "USA": 20, "NLD": 15, "KOR": 10}),
     },
-    "eda_ip": {"eda": (0.6, None), "ip": (0.4, None)},
     "foundry": {"foundry": (1.0, None)},
-    "memory": {"dram_hbm": (0.6, {"KOR": 55, "CHN": 20, "USA": 15, "JPN": 10}), "nand": (0.4, None)},
+    "memory": {"dram_hbm": (0.6, {"KOR": 65, "CHN": 15, "USA": 12, "JPN": 8}), "nand": (0.4, None)},
     "packaging": {"advanced_packaging": (0.4, {"TWN": 70, "KOR": 10, "USA": 10, "CHN": 10}),
                   "standard_packaging": (0.6, None)},
     "chip_designer": {"ai": (0.25, None), "cpu": (0.15, None), "network": (0.25, None), "power": (0.35, None)},
@@ -87,8 +91,8 @@ ROLE_WORDS = {
     "wafers": "Wafers", "polysilicon": "Silicon", "photoresist": "Chemicals", "specialty_gases": "Materials",
     "wet_chemicals": "Chemicals", "substrates": "Materials", "cmp_slurry": "Materials",
     "lithography": "Lithography", "etch": "Systems", "deposition": "Equipment", "metrology": "Instruments",
-    "cleaning": "Solutions", "ion_implant": "Equipment", "assembly_tools": "Precision", "eda": "Design",
-    "ip": "Labs", "foundry": "Foundry", "dram_hbm": "Memory", "nand": "Memory",
+    "cleaning": "Solutions", "ion_implant": "Equipment", "assembly_tools": "Precision",
+    "foundry": "Foundry", "dram_hbm": "Memory", "nand": "Memory",
     "advanced_packaging": "Packaging", "standard_packaging": "Technologies", "ai": "Compute",
     "cpu": "Microsystems", "network": "Photonics", "power": "Devices", "server_maker": "Servers",
 }
@@ -154,10 +158,23 @@ ROLE_FACILITIES = {
     "server_maker": ("server_assembly", (1, 4), "baci_server_exports"),
 }
 
+# Advanced (2.5D) packaging stays close to the leading-edge fabs it serves, so these
+# plants mostly sit in the company's home country rather than in low-cost hubs.
+ADVANCED_PACKAGING_PLACEMENT = {"hq": 85, "TWN": 10, "USA": 5}
+
+# When choosing which facilities make a part, facilities in these countries are favoured
+# for the step, reflecting real concentration: advanced packaging and leading-edge logic
+# in Taiwan, HBM in Korea. Countries not listed have weight 1.
+STEP_COUNTRY_WEIGHT = {
+    "advanced_packaging": {"TWN": 6.0, "KOR": 1.5},
+    "advanced_logic": {"TWN": 6.0},
+    "hbm": {"KOR": 6.0, "USA": 1.5},
+}
+
 LOGIC_NODES_NM = [3, 5, 7, 16, 28, 40, 65, 130]
 # How likely a fab in each country is to run an advanced (<= 5nm) node, relative to mature nodes.
 # Leading-edge logic is concentrated in Taiwan; China has no access to <= 5nm tools.
-ADVANCED_NODE_WEIGHT = {"TWN": 6.0, "KOR": 1.0, "USA": 0.5, "JPN": 0.3}
+ADVANCED_NODE_WEIGHT = {"TWN": 10.0, "KOR": 0.8, "USA": 0.5, "JPN": 0.15}
 # Countries whose DRAM fabs make leading-edge HBM.
 HBM_COUNTRIES = {"KOR", "USA", "JPN", "TWN"}
 # Fabs at or below this node (and DRAM fabs) need EUV lithography, which only Dutch suppliers make.
@@ -217,6 +234,16 @@ SCENARIOS = [
          country="CHN", imposing_country="NLD", hs_code=EQUIPMENT_HS, severity=4, start_date="2025-05-01"),
 ]
 SEVERITY_RECOVERY_FACTOR = {1: 0.25, 2: 0.5, 3: 0.8, 4: 1.0, 5: 1.4}
+
+# How a fact would be known by a server maker analysing its supply chain.
+DATA_SOURCES = ("own_system", "supplier_disclosed", "third_party", "public")
+CONFIDENCE_LEVELS = ("confirmed", "estimated")
+
+# Stock snapshot date (just before the first hypothetical scenario) and typical days of
+# supply held per part type. Scarce AI parts are held lean; commodity parts deeper.
+STOCK_AS_OF = "2025-03-01"
+DAYS_OF_SUPPLY = {"ai_accelerator": (7, 30), "cpu": (10, 40), "network_chip": (14, 60),
+                  "power_ic": (20, 90), "hbm_stack": (5, 25), "substrate": (10, 40)}
 
 
 @dataclass
@@ -329,28 +356,39 @@ class Generator:
             profile.update(domain="logic", process_node=f"{node}nm", process_node_nm=node,
                            wafer_size_mm=300 if node <= 40 or self.rng.random() < 0.5 else 200)
             capacity, unit = self.integer(15, 110) * 1000, "wafer_starts_per_month"
-            ttr = (20, 40) if node <= 7 else (12, 30)
+            ttr = (10, 24) if node <= 7 else (6, 16)
         elif ftype == "memory_fab":
             profile.update(domain=subtype, process_node=self.choice(["1a", "1b", "1c"]) + (" DRAM" if subtype == "dram_hbm" else " NAND"),
                            wafer_size_mm=300)
             capacity, unit = self.integer(40, 180) * 1000, "wafer_starts_per_month"
-            ttr = (16, 36)
+            ttr = (8, 20)
         elif ftype == "packaging_plant":
             profile.update(domain=subtype)
             if subtype == "advanced_packaging":
-                capacity, unit, ttr = self.integer(5, 40) * 1000, "interposer_wafers_per_month", (12, 26)
+                capacity, unit, ttr = self.integer(5, 40) * 1000, "interposer_wafers_per_month", (6, 14)
             else:
-                capacity, unit, ttr = self.integer(50, 600) * 1_000_000, "packages_per_month", (6, 16)
+                capacity, unit, ttr = self.integer(50, 600) * 1_000_000, "packages_per_month", (3, 10)
         elif ftype == "equipment_plant":
             profile.update(domain=subtype)
-            capacity, unit, ttr = self.integer(50, 1200), "tools_per_year", (10, 26)
+            capacity, unit, ttr = self.integer(50, 1200), "tools_per_year", (6, 16)
         elif ftype == "materials_plant":
             profile.update(domain=subtype)
-            capacity, unit, ttr = self.integer(500, 20_000), "tonnes_per_year", (6, 20)
+            capacity, unit, ttr = self.integer(500, 20_000), "tonnes_per_year", (4, 12)
         else:  # server_assembly
             profile.update(domain="ai_servers")
-            capacity, unit, ttr = self.integer(500, 12_000), "racks_per_month", (2, 8)
+            capacity, unit, ttr = self.integer(500, 12_000), "racks_per_month", (1, 4)
         profile.update(capacity=capacity, capacity_unit=unit, time_to_recover_weeks=self.integer(*ttr))
+        # Contract assemblers share capacity with customers; big fabs announce it publicly;
+        # everything else is an analyst estimate.
+        if ftype == "server_assembly":
+            source, confidence = "supplier_disclosed", "confirmed"
+        elif ftype in ("front_end_fab", "memory_fab") and self.rng.random() < 0.35:
+            source, confidence = "public", "confirmed"
+        elif ftype == "packaging_plant" and self.rng.random() < 0.3:
+            source, confidence = "supplier_disclosed", "confirmed"
+        else:
+            source, confidence = "third_party", "estimated"
+        profile.update(capacity_source=source, capacity_confidence=confidence)
         return profile
 
     def build_facilities(self) -> None:
@@ -369,7 +407,7 @@ class Generator:
                 if placement == "baci_server_exports":
                     country = self.choice(list(self.server_export_weights), list(self.server_export_weights.values()))
                 else:
-                    weights = dict(placement)
+                    weights = dict(ADVANCED_PACKAGING_PLACEMENT if company.subtype == "advanced_packaging" else placement)
                     hq_weight = weights.pop("hq")
                     weights[company.hq_country] = weights.get(company.hq_country, 0) + hq_weight
                     country = self.choice(list(weights), list(weights.values()))
@@ -460,9 +498,12 @@ class Generator:
                         "annual_value_usd": int(annual_spend * spend_share * share / 100),
                         "share_of_need_pct": share,
                         "lead_time_weeks": self.integer(*((26, 78) if category == "lithography" else (8, 40) if hs == EQUIPMENT_HS else (2, 16))),
-                        "inventory_weeks_on_hand": self.integer(2, 16),
                         "contract_start": f"{start}-{self.integer(1, 12):02d}-01",
                         "contract_end": f"{start + self.integer(2, 6)}-12-31",
+                        # A downstream company sees a fab's tool and material suppliers only through
+                        # public reporting or data providers; values and shares are estimates.
+                        "data_source": self.choice(["public", "third_party"], [0.3, 0.7]),
+                        "confidence": "estimated",
                     })
                 unused = [i for i in range(len(candidates)) if i not in set(picked)]
                 if unused and self.rng.random() < 0.35:
@@ -472,6 +513,7 @@ class Generator:
                         "supply_category": category,
                         "qualification_months": self.integer(*((12, 30) if category == "lithography" else (3, 15))),
                         "spare_capacity_pct": round(self.uniform(5, 35), 1),
+                        "data_source": "third_party", "confidence": "estimated",
                     })
         self.t["synthetic_supply"] = supply
         self.t["synthetic_alt_supplier"] = alternatives
@@ -485,7 +527,10 @@ class Generator:
             if part_type == "hbm_stack":
                 designers = designers[designers["hq_country"].isin(HBM_COUNTRIES)]
             for d in designers.itertuples():
-                for _ in range(self.integer(*PARTS_PER_DESIGNER[subtype])):
+                # HBM comes overwhelmingly from Korean memory makers: they offer more HBM parts,
+                # and accelerators choose them more often.
+                hbm_weight = STEP_COUNTRY_WEIGHT["hbm"].get(d.hq_country, 1.0) if part_type == "hbm_stack" else 1.0
+                for _ in range(round(self.integer(*PARTS_PER_DESIGNER[subtype]) * (2 if hbm_weight > 2 else 1))):
                     node = None
                     if node_range:
                         node = self.choice([n for n in LOGIC_NODES_NM if node_range[0] <= n <= node_range[1]])
@@ -499,7 +544,7 @@ class Generator:
                         "process_node_nm": node,
                         "unit_price_usd": round(self.uniform(*price_range), 2),
                         # Popularity drives which parts many products use (a few parts dominate).
-                        "popularity": float(self.rng.pareto(1.2) + 1),
+                        "popularity": float(self.rng.pareto(1.2) + 1) * hbm_weight,
                     })
         self.t["synthetic_chip_part"] = rows
 
@@ -517,17 +562,23 @@ class Generator:
 
         fabrication, packaging, components, alternatives = [], [], [], []
 
-        def assign(part, pool: pd.DataFrame, step: str, out: list, max_sites: int) -> None:
+        def assign(part, pool: pd.DataFrame, step: str, out: list, max_sites: int, concentration: str | None = None) -> None:
             if pool.empty:
                 raise ValidationError(f"No facility can perform {step} for {part.part_type} {part.part_id}")
             k = min(len(pool), self.choice(list(range(1, max_sites + 1)), [0.45, 0.35, 0.2][:max_sites]))
-            # Larger facilities win more parts.
-            picked = self.rng.choice(len(pool), size=k, replace=False, p=pool["capacity"] / pool["capacity"].sum())
+            # Larger facilities win more parts, and some countries dominate certain steps.
+            country_weight = STEP_COUNTRY_WEIGHT.get(concentration, {})
+            weights = pool["capacity"] * pool["country"].map(lambda c: country_weight.get(c, 1.0))
+            picked = self.rng.choice(len(pool), size=k, replace=False, p=weights / weights.sum())
             for idx, share in zip(sorted(picked), self.split_shares(k)):
                 site = pool.iloc[idx]
+                disclosed = self.rng.random() < 0.65
                 row = {"facility_id": site.facility_id, "part_id": part.part_id, "share_of_part_volume_pct": share,
                        "lead_time_weeks": self.integer(*((12, 20) if step == "fabrication" else (4, 10))),
-                       "inventory_weeks_on_hand": self.integer(1, 10)}
+                       # Which sites make a part is disclosed by suppliers or sold by data providers;
+                       # the share of volume per site is always an estimate.
+                       "data_source": "supplier_disclosed" if disclosed else "third_party",
+                       "confidence": "confirmed" if disclosed else "estimated"}
                 if step == "fabrication" and site.capacity_unit == "wafer_starts_per_month":
                     row["wafers_per_month"] = int(site.capacity * self.uniform(0.02, 0.15) * share / 100)
                 out.append(row)
@@ -536,30 +587,41 @@ class Generator:
                 alt = pool.iloc[self.choice(unused)]
                 alternatives.append({"facility_id": alt.facility_id, "part_id": part.part_id, "step": step,
                                      "qualification_months": self.integer(*((6, 18) if step == "fabrication" else (3, 9))),
-                                     "spare_capacity_pct": round(self.uniform(5, 30), 1)})
+                                     "spare_capacity_pct": round(self.uniform(5, 30), 1),
+                                     # From the company's approved manufacturer list.
+                                     "data_source": "own_system", "confidence": "confirmed"})
 
         for part in parts.itertuples():
             if part.part_type == "hbm_stack":
                 own = hbm_fabs[hbm_fabs["company_id"] == part.designer_company_id]
-                assign(part, own if not own.empty else hbm_fabs, "fabrication", fabrication, 2)
+                assign(part, own if not own.empty else hbm_fabs, "fabrication", fabrication, 2, "hbm")
             elif part.part_type == "substrate":
                 own = substrate_plants[substrate_plants["company_id"] == part.designer_company_id]
                 assign(part, own if not own.empty else substrate_plants, "fabrication", fabrication, 2)
             else:
                 capable = fabs[fabs["process_node_nm"] <= part.process_node_nm]
-                assign(part, capable, "fabrication", fabrication, 3)
-                assign(part, adv_pkg if part.part_type == "ai_accelerator" else std_pkg, "packaging", packaging, 2)
+                leading_edge = part.process_node_nm <= 5
+                assign(part, capable, "fabrication", fabrication, 3, "advanced_logic" if leading_edge else None)
+                if part.part_type == "ai_accelerator":
+                    assign(part, adv_pkg, "packaging", packaging, 2, "advanced_packaging")
+                else:
+                    assign(part, std_pkg, "packaging", packaging, 2)
 
         hbm = parts[parts["part_type"] == "hbm_stack"]
         substrates = parts[parts["part_type"] == "substrate"]
+        def component(child: str, parent: str, quantity: int) -> dict:
+            # A part's internal BOM belongs to its designer; downstream it is disclosed or inferred.
+            disclosed = self.rng.random() < 0.5
+            return {"component_part_id": child, "parent_part_id": parent, "quantity": quantity,
+                    "data_source": "supplier_disclosed" if disclosed else "third_party",
+                    "confidence": "confirmed" if disclosed else "estimated"}
+
         for acc in parts[parts["part_type"] == "ai_accelerator"].itertuples():
-            components.append({"component_part_id": self.choice(hbm["part_id"], hbm["popularity"]),
-                               "parent_part_id": acc.part_id, "quantity": self.integer(*HBM_PER_ACCELERATOR)})
-            components.append({"component_part_id": self.choice(substrates["part_id"], substrates["popularity"]),
-                               "parent_part_id": acc.part_id, "quantity": 1})
+            components.append(component(self.choice(hbm["part_id"], hbm["popularity"]), acc.part_id,
+                                        self.integer(*HBM_PER_ACCELERATOR)))
+            components.append(component(self.choice(substrates["part_id"], substrates["popularity"]), acc.part_id, 1))
         for cpu in parts[parts["part_type"].isin(["cpu", "network_chip"])].itertuples():
-            components.append({"component_part_id": self.choice(substrates["part_id"], substrates["popularity"]),
-                               "parent_part_id": cpu.part_id, "quantity": 1})
+            components.append(component(self.choice(substrates["part_id"], substrates["popularity"]), cpu.part_id, 1))
 
         self.t["synthetic_fabrication"] = fabrication
         self.t["synthetic_packaging"] = packaging
@@ -600,8 +662,7 @@ class Generator:
                 k = min(len(plants), self.choice([1, 2, 3], [0.5, 0.35, 0.15]))
                 for idx, share in zip(sorted(self.rng.choice(len(plants), size=k, replace=False)), self.split_shares(k)):
                     assembly.append({"facility_id": plants.iloc[idx].facility_id, "product_id": product_id,
-                                     "share_of_product_volume_pct": share, "lead_time_weeks": self.integer(2, 6),
-                                     "inventory_weeks_on_hand": self.integer(1, 6)})
+                                     "share_of_product_volume_pct": share, "lead_time_weeks": self.integer(2, 6)})
                 revenue = price * units
                 for market_id, mix in MARKET_MIX[ptype].items():
                     sales.append({"product_id": product_id, "market_id": market_id,
@@ -613,17 +674,52 @@ class Generator:
         self.t["synthetic_assembly"] = assembly
         self.t["synthetic_sales"] = sales
 
-    def build_licenses(self) -> None:
-        companies = self.t["synthetic_company"]
-        vendors = companies[companies["role"] == "eda_ip"]
+    def build_stock(self) -> None:
+        """Stock of each part at the facilities that consume it, as days of supply.
+
+        Assembly plants hold the parts in the servers they build (the server maker's own
+        inventory records). Advanced packaging plants hold the HBM and substrates that go
+        into the accelerators they package (disclosed by the supplier, so estimated).
+        """
+        products = self.t["synthetic_end_product"].set_index("product_id")
+        bom = self.t["synthetic_bom_line"]
+        parts = self.t["synthetic_chip_part"].set_index("part_id")
+        usage: dict[tuple[str, str], float] = {}
+        origin: dict[tuple[str, str], str] = {}
+
+        for a in self.t["synthetic_assembly"].itertuples():
+            units_per_day = products.at[a.product_id, "annual_units"] * a.share_of_product_volume_pct / 100 / 365
+            for line in bom[bom["product_id"] == a.product_id].itertuples():
+                key = (a.facility_id, line.part_id)
+                usage[key] = usage.get(key, 0.0) + units_per_day * line.units_per_product
+                origin[key] = "assembly"
+
+        part_units_per_day = (bom.merge(products[["annual_units"]], left_on="product_id", right_index=True)
+                              .assign(units=lambda x: x["annual_units"] * x["units_per_product"] / 365)
+                              .groupby("part_id")["units"].sum())
+        components = self.t["synthetic_part_component"]
+        for pk in self.t["synthetic_packaging"].itertuples():
+            parent_per_day = part_units_per_day.get(pk.part_id, 0.0) * pk.share_of_part_volume_pct / 100
+            for c in components[components["parent_part_id"] == pk.part_id].itertuples():
+                key = (pk.facility_id, c.component_part_id)
+                usage[key] = usage.get(key, 0.0) + parent_per_day * c.quantity
+                origin.setdefault(key, "packaging")
+
         rows = []
-        for d in companies[companies["role"] == "chip_designer"].itertuples():
-            for idx in sorted(self.rng.choice(len(vendors), size=min(len(vendors), self.integer(1, 3)), replace=False)):
-                v = vendors.iloc[idx]
-                rows.append({"vendor_company_id": v.company_id, "licensee_company_id": d.company_id,
-                             "license_type": "eda_tools" if v.subtype == "eda" else "core_ip",
-                             "annual_fee_usd": self.integer(1, 60) * 250_000})
-        self.t["synthetic_license"] = rows
+        for (facility_id, part_id), daily in sorted(usage.items()):
+            if daily <= 0:
+                continue
+            days = self.uniform(*DAYS_OF_SUPPLY[parts.at[part_id, "part_type"]])
+            units = max(1, round(daily * days))
+            own = origin[(facility_id, part_id)] == "assembly"
+            rows.append({
+                "facility_id": facility_id, "part_id": part_id, "as_of_date": STOCK_AS_OF,
+                "units_on_hand": units, "daily_usage": round(daily, 2),
+                "days_of_supply": round(units / daily, 1),
+                "data_source": "own_system" if own else "supplier_disclosed",
+                "confidence": "confirmed" if own else "estimated",
+            })
+        self.t["synthetic_stock"] = rows
 
     # ---------- restrictions and disruption scenarios ----------
     def build_restrictions(self) -> None:
@@ -650,6 +746,8 @@ class Generator:
                 "program": self.choice(["advanced_computing", "military_end_use", "semiconductor_manufacturing"]),
                 "start_date": f"{self.integer(2019, 2025)}-{self.integer(1, 12):02d}-15",
                 "license_policy": self.choice(["presumption_of_denial", "case_by_case"], [0.7, 0.3]),
+                # Screening lists are public.
+                "data_source": "public", "confidence": "confirmed",
             })
         self.t["synthetic_restriction"] = rows
 
@@ -674,12 +772,21 @@ class Generator:
                     distance = haversine_km(s["latitude"], s["longitude"], f.latitude, f.longitude)
                     if distance <= s["radius_km"]:
                         closeness = 1 - distance / s["radius_km"]
-                        loss = round(min(100.0, 20 + 70 * closeness * s["severity"] / 4), 1)
+                        loss = min(100.0, 20 + 70 * closeness * s["severity"] / 4)
+                        # Impacts arrive days after the event: risk-monitoring services report rough
+                        # estimates; suppliers confirm their own figures later.
+                        disclosed = self.rng.random() < 0.3
+                        reported = pd.Timestamp(s["start_date"]) + pd.Timedelta(
+                            days=self.integer(*((7, 21) if disclosed else (1, 5))))
                         impacts.append({"event_id": event_id, "facility_id": f.facility_id,
-                                        "distance_km": round(distance, 1), "capacity_loss_pct": loss,
+                                        "distance_km": round(distance, 1),
+                                        "capacity_loss_pct": round(loss, 1) if disclosed else float(round(loss, -1)),
                                         "recovery_weeks": max(1, round(f.time_to_recover_weeks
                                                                        * SEVERITY_RECOVERY_FACTOR[s["severity"]]
-                                                                       * (0.5 + closeness)))})
+                                                                       * (0.5 + closeness))),
+                                        "reported_at": reported.strftime("%Y-%m-%d"),
+                                        "data_source": "supplier_disclosed" if disclosed else "third_party",
+                                        "confidence": "confirmed" if disclosed else "estimated"})
         self.t["synthetic_disruption_event"] = events
         self.t["synthetic_event_impact"] = impacts
         self.t["synthetic_event_country"] = countries
@@ -691,7 +798,7 @@ class Generator:
         self.build_parts()
         self.build_manufacturing()
         self.build_products()
-        self.build_licenses()
+        self.build_stock()
         self.build_restrictions()
         self.build_events()
         self.t["synthetic_chip_part"] = self.t["synthetic_chip_part"].drop(columns="popularity")
@@ -729,8 +836,8 @@ FOREIGN_KEYS = [
     ("synthetic_assembly", "product_id", "synthetic_end_product", "product_id"),
     ("synthetic_sales", "product_id", "synthetic_end_product", "product_id"),
     ("synthetic_sales", "market_id", "synthetic_end_market", "market_id"),
-    ("synthetic_license", "vendor_company_id", "synthetic_company", "company_id"),
-    ("synthetic_license", "licensee_company_id", "synthetic_company", "company_id"),
+    ("synthetic_stock", "facility_id", "synthetic_facility", "facility_id"),
+    ("synthetic_stock", "part_id", "synthetic_chip_part", "part_id"),
     ("synthetic_restriction", "imposing_country", "country", "iso3"),
     ("synthetic_restriction", "company_id", "synthetic_company", "company_id"),
     ("synthetic_disruption_event", "hs_code", "product", "hs_code"),
@@ -748,7 +855,7 @@ PRIMARY_KEYS = {
     "synthetic_alt_facility": ["facility_id", "part_id", "step"], "synthetic_end_market": ["market_id"],
     "synthetic_end_product": ["product_id"], "synthetic_bom_line": ["part_id", "product_id"],
     "synthetic_assembly": ["facility_id", "product_id"], "synthetic_sales": ["product_id", "market_id"],
-    "synthetic_license": ["vendor_company_id", "licensee_company_id"], "synthetic_restriction": ["restriction_id"],
+    "synthetic_stock": ["facility_id", "part_id", "as_of_date"], "synthetic_restriction": ["restriction_id"],
     "synthetic_disruption_event": ["event_id"], "synthetic_event_impact": ["event_id", "facility_id"],
     "synthetic_event_country": ["event_id", "country", "relation"],
 }
@@ -796,6 +903,25 @@ def validate(t: Tables, real: dict[str, pd.DataFrame], gen: Generator) -> list[s
         if len(off):
             failures.append(f"{table}: {len(off)} groups whose shares do not sum to 100%")
     report.append("supply, fabrication, packaging and assembly shares each sum to 100%")
+
+    bad_provenance = []
+    for name, frame in t.data.items():
+        for col, allowed in (("data_source", DATA_SOURCES), ("confidence", CONFIDENCE_LEVELS),
+                             ("capacity_source", DATA_SOURCES), ("capacity_confidence", CONFIDENCE_LEVELS)):
+            if col in frame and not frame[col].isin(allowed).all():
+                bad_provenance.append(f"{name}.{col}")
+    if bad_provenance:
+        failures.append(f"unknown data_source / confidence values in {bad_provenance}")
+    report.append("every data_source and confidence value is from the allowed set")
+
+    stock = t["synthetic_stock"]
+    needed = (t["synthetic_assembly"][["facility_id", "product_id"]]
+              .merge(t["synthetic_bom_line"][["product_id", "part_id"]], on="product_id")[["facility_id", "part_id"]]
+              .drop_duplicates())
+    missing_stock = needed.merge(stock, on=["facility_id", "part_id"], how="left", indicator=True)
+    if (missing_stock["_merge"] == "left_only").any() or not (stock["days_of_supply"] > 0).all():
+        failures.append("every assembly plant needs positive stock of every part in the servers it builds")
+    report.append("assembly plants hold stock of every part they use, with positive days of supply")
 
     parts = t["synthetic_chip_part"]
     for check, ok in [
@@ -853,6 +979,8 @@ def main() -> int:
         return 1
 
     args.out.mkdir(parents=True, exist_ok=True)
+    for stale in args.out.glob("synthetic_*.csv"):  # tables from older versions must not linger
+        stale.unlink()
     for name, frame in tables.data.items():
         frame.to_csv(args.out / f"{name}.csv", index=False)
     metadata = {

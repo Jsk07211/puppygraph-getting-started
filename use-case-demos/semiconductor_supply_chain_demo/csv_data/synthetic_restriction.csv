@@ -1,6 +1,4 @@
-restriction_id,imposing_country,company_id,list_type,program,start_date,license_policy
-R0001,USA,C00111,export_control_list,advanced_computing,2021-08-15,case_by_case
-R0002,USA,C00113,export_control_list,advanced_computing,2019-11-15,case_by_case
-R0003,USA,C00228,export_control_list,semiconductor_manufacturing,2019-11-15,presumption_of_denial
-R0004,USA,C00231,export_control_list,advanced_computing,2025-03-15,presumption_of_denial
-R0005,USA,C00236,export_control_list,military_end_use,2020-06-15,presumption_of_denial
+restriction_id,imposing_country,company_id,list_type,program,start_date,license_policy,data_source,confidence
+R0001,USA,C00064,export_control_list,advanced_computing,2020-02-15,presumption_of_denial,public,confirmed
+R0002,USA,C00157,export_control_list,military_end_use,2023-07-15,presumption_of_denial,public,confirmed
+R0003,USA,C00195,export_control_list,advanced_computing,2021-01-15,presumption_of_denial,public,confirmed

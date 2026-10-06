@@ -98,18 +98,18 @@ LIMIT 20;
 
 ### 3. Time to survive vs time to recover
 
-Which parts run out of inventory before the affected facility recovers, and how much server revenue depends on them?
-*Path: Event → Facility → Part → (Part) → Server → Market, comparing values along the path.*
+Which downstream sites run out of an affected part before the facility making it recovers? Time to survive is the stock each site holds (days of supply); time to recover is the facility's estimated recovery time after the event.
+*Path: Event → Facility → Part ← Facility holding stock, comparing values from both ends.*
 
 ```cypher
-MATCH (e:Event {event_id: 'V001'})-[i:IMPACTS]->(f:Facility)-[m:FABRICATES|PACKAGES]->(p:Part)
-WHERE i.recovery_weeks > m.inventory_weeks_on_hand
-MATCH (p)-[:COMPONENT_OF|USED_IN*1..3]->(srv:Server)
-WITH p, max(i.recovery_weeks - m.inventory_weeks_on_hand) AS gap_weeks, collect(DISTINCT srv) AS servers
-UNWIND servers AS srv
-MATCH (srv)-[sale:SOLD_INTO]->(:Market)
-RETURN p.part_number, p.part_type, gap_weeks, sum(sale.revenue_usd) AS revenue_exposed_usd
-ORDER BY revenue_exposed_usd DESC
+MATCH (e:Event {event_id: 'V001'})-[i:IMPACTS]->(:Facility)-[:FABRICATES|PACKAGES]->(p:Part)
+      <-[st:HOLDS_STOCK]-(site:Facility)
+WITH p, site, st, max(i.recovery_weeks) * 7 AS recovery_days
+WHERE recovery_days > st.days_of_supply
+RETURN p.part_number, p.part_type, site.name AS runs_out_at,
+       st.days_of_supply AS days_of_supply, recovery_days,
+       recovery_days - st.days_of_supply AS shortfall_days
+ORDER BY shortfall_days DESC
 LIMIT 20;
 ```
 
@@ -167,6 +167,19 @@ RETURN f.facility_type, c.capacity_unit,
        count(f) AS facilities_hit,
        sum(c.capacity * i.capacity_loss_pct / 100) AS capacity_lost
 ORDER BY facilities_hit DESC;
+```
+
+### 8. How much of the exposure is confirmed?
+
+Real supply chain data mixes the company's own records, supplier disclosures and third-party estimates. This splits the servers exposed to the Hsinchu scenario by how the deep-tier link was known: confirmed by the supplier, or estimated by a data provider.
+*Path: Event → Facility → Part → (Part) → Server, grouped by the provenance of the facility-to-part link.*
+
+```cypher
+MATCH (:Event {event_id: 'V001'})-[:IMPACTS]->(:Facility)-[m:FABRICATES|PACKAGES]->(:Part)
+      -[:COMPONENT_OF|USED_IN*1..3]->(srv:Server)
+RETURN m.confidence AS link_confidence, m.data_source AS source,
+       count(DISTINCT srv) AS servers_exposed
+ORDER BY servers_exposed DESC;
 ```
 
 ## Side by Side: The Same Question in SQL
